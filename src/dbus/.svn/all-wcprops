@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5112/FileZilla3/trunk/src/dbus
+END
+wxdbusconnection.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5041/FileZilla3/trunk/src/dbus/wxdbusconnection.cpp
+END
+session_manager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4813/FileZilla3/trunk/src/dbus/session_manager.cpp
+END
+desktop_notification.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5112/FileZilla3/trunk/src/dbus/desktop_notification.cpp
+END
+power_management_inhibitor.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/5112/FileZilla3/trunk/src/dbus/power_management_inhibitor.cpp
+END
+wxdbusconnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/dbus/wxdbusconnection.h
+END
+wxdbusmessage.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4775/FileZilla3/trunk/src/dbus/wxdbusmessage.cpp
+END
+session_manager.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2898/FileZilla3/trunk/src/dbus/session_manager.h
+END
+desktop_notification.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4802/FileZilla3/trunk/src/dbus/desktop_notification.h
+END
+power_management_inhibitor.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3397/FileZilla3/trunk/src/dbus/power_management_inhibitor.h
+END
+wxdbusmessage.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4775/FileZilla3/trunk/src/dbus/wxdbusmessage.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/3500/FileZilla3/trunk/src/dbus/Makefile.am
+END

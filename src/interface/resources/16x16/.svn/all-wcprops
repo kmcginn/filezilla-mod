@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3769/FileZilla3/trunk/src/interface/resources/16x16
+END
+symlink.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/3352/FileZilla3/trunk/src/interface/resources/16x16/symlink.png
+END
+refresh.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/refresh.png
+END
+unknown.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/unknown.png
+END
+sitemanager.png
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/sitemanager.png
+END
+localtreeview.png
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/localtreeview.png
+END
+folderclosed.png
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/folderclosed.png
+END
+synchronize.png
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2987/FileZilla3/trunk/src/interface/resources/16x16/synchronize.png
+END
+logview.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/logview.png
+END
+sort_down_dark.png
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/3591/FileZilla3/trunk/src/interface/resources/16x16/sort_down_dark.png
+END
+queueview.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/queueview.png
+END
+downloadadd.png
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/downloadadd.png
+END
+sort_up_light.png
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3591/FileZilla3/trunk/src/interface/resources/16x16/sort_up_light.png
+END
+processqueue.png
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/processqueue.png
+END
+binary.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2191/FileZilla3/trunk/src/interface/resources/16x16/binary.png
+END
+upload.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/upload.png
+END
+compare.png
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/3599/FileZilla3/trunk/src/interface/resources/16x16/compare.png
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/3609/FileZilla3/trunk/src/interface/resources/16x16/Makefile.am
+END
+lock.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/lock.png
+END
+ascii.png
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/2191/FileZilla3/trunk/src/interface/resources/16x16/ascii.png
+END
+disconnect.png
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/disconnect.png
+END
+sort_up_dark.png
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/3591/FileZilla3/trunk/src/interface/resources/16x16/sort_up_dark.png
+END
+uploadadd.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/uploadadd.png
+END
+bookmark.png
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2919/FileZilla3/trunk/src/interface/resources/16x16/bookmark.png
+END
+sort_down_light.png
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3591/FileZilla3/trunk/src/interface/resources/16x16/sort_down_light.png
+END
+server.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/server.png
+END
+remotetreeview.png
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/remotetreeview.png
+END
+download.png
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/download.png
+END
+auto.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2191/FileZilla3/trunk/src/interface/resources/16x16/auto.png
+END
+folder.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/folder.png
+END
+filezilla.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/filezilla.png
+END
+file.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/file.png
+END
+reconnect.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/reconnect.png
+END
+find.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3213/FileZilla3/trunk/src/interface/resources/16x16/find.png
+END
+speedlimits.png
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/3609/FileZilla3/trunk/src/interface/resources/16x16/speedlimits.png
+END
+filter.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/filter.png
+END
+cancel.png
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/16x16/cancel.png
+END

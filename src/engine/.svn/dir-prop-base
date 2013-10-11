@@ -1,0 +1,15 @@
+K 10
+svn:ignore
+V 125
+.deps
+Debug
+Debug Unicode
+Makefile
+Makefile.in
+Release
+Release Unicode
+engine.vcproj.*
+engine.vcxproj
+engine.vcxproj.filters
+
+END

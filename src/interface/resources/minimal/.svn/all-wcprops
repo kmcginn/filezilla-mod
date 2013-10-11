@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/3769/FileZilla3/trunk/src/interface/resources/minimal
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/3189/FileZilla3/trunk/src/interface/resources/minimal/Makefile.am
+END
+theme.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2990/FileZilla3/trunk/src/interface/resources/minimal/theme.xml
+END

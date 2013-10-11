@@ -1,0 +1,11 @@
+K 10
+svn:ignore
+V 61
+filezilla.pot
+Makefile.in
+Makefile
+resources.h
+*.po.new
+*.mo
+
+END

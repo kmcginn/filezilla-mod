@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/5136/FileZilla3/trunk/data
+END
+process_running.nsh
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4775/FileZilla3/trunk/data/process_running.nsh
+END
+UAC_unicode.dll.txt
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2901/FileZilla3/trunk/data/UAC_unicode.dll.txt
+END
+nsis_appid.txt
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3677/FileZilla3/trunk/data/nsis_appid.txt
+END
+UAC_unicode.dll
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2901/FileZilla3/trunk/data/UAC_unicode.dll
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/3677/FileZilla3/trunk/data/Makefile.am
+END
+mingwm10.dll
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/3452/FileZilla3/trunk/data/mingwm10.dll
+END
+makezip.sh.in
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/4036/FileZilla3/trunk/data/makezip.sh.in
+END
+uninstall.ico
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2999/FileZilla3/trunk/data/uninstall.ico
+END
+filezilla.desktop
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3063/FileZilla3/trunk/data/filezilla.desktop
+END
+install.nsi.in
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/5136/FileZilla3/trunk/data/install.nsi.in
+END
+nsis_appid.dll
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/3677/FileZilla3/trunk/data/nsis_appid.dll
+END

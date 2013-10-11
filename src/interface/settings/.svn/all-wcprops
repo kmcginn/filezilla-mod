@@ -1,0 +1,281 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings
+END
+settingsdialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/settingsdialog.h
+END
+optionspage_connection_ftp.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_connection_ftp.h
+END
+optionspage_fileexists.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/optionspage_fileexists.cpp
+END
+optionspage_updatecheck.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/4879/FileZilla3/trunk/src/interface/settings/optionspage_updatecheck.cpp
+END
+optionspage_language.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_language.cpp
+END
+optionspage_transfer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3658/FileZilla3/trunk/src/interface/settings/optionspage_transfer.cpp
+END
+optionspage.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/optionspage.h
+END
+optionspage_themes.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/optionspage_themes.cpp
+END
+optionspage_logging.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_logging.cpp
+END
+optionspage_proxy.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_proxy.h
+END
+optionspage_filetype.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_filetype.h
+END
+optionspage_connection_passive.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_connection_passive.cpp
+END
+optionspage_edit.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_edit.h
+END
+optionspage_debug.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_debug.h
+END
+optionspage_ftpproxy.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_ftpproxy.cpp
+END
+optionspage_filelists.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/optionspage_filelists.cpp
+END
+optionspage_connection_active.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_connection_active.h
+END
+optionspage_connection.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_connection.cpp
+END
+optionspage_connection_sftp.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_connection_sftp.h
+END
+optionspage_interface.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/optionspage_interface.cpp
+END
+optionspage_edit_associations.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/4888/FileZilla3/trunk/src/interface/settings/optionspage_edit_associations.cpp
+END
+optionspage_connection_ftp.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_connection_ftp.cpp
+END
+settingsdialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/4879/FileZilla3/trunk/src/interface/settings/settingsdialog.cpp
+END
+optionspage_sizeformatting.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_sizeformatting.h
+END
+optionspage_dateformatting.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_dateformatting.h
+END
+optionspage.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage.cpp
+END
+optionspage_filetype.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/settings/optionspage_filetype.cpp
+END
+optionspage_proxy.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/4840/FileZilla3/trunk/src/interface/settings/optionspage_proxy.cpp
+END
+optionspage_fileexists.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3370/FileZilla3/trunk/src/interface/settings/optionspage_fileexists.h
+END
+optionspage_edit.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/4888/FileZilla3/trunk/src/interface/settings/optionspage_edit.cpp
+END
+optionspage_updatecheck.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_updatecheck.h
+END
+optionspage_debug.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_debug.cpp
+END
+optionspage_language.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_language.h
+END
+optionspage_transfer.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_transfer.h
+END
+optionspage_themes.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_themes.h
+END
+optionspage_connection_active.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_connection_active.cpp
+END
+optionspage_logging.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_logging.h
+END
+optionspage_connection_sftp.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/settings/optionspage_connection_sftp.cpp
+END
+optionspage_connection_passive.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_connection_passive.h
+END
+optionspage_ftpproxy.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_ftpproxy.h
+END
+optionspage_filelists.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_filelists.h
+END
+optionspage_connection.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/3228/FileZilla3/trunk/src/interface/settings/optionspage_connection.h
+END
+optionspage_sizeformatting.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_sizeformatting.cpp
+END
+optionspage_interface.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/settings/optionspage_interface.h
+END
+optionspage_dateformatting.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/settings/optionspage_dateformatting.cpp
+END
+optionspage_edit_associations.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/3229/FileZilla3/trunk/src/interface/settings/optionspage_edit_associations.h
+END

@@ -1,0 +1,317 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5127/FileZilla3/trunk/src/engine
+END
+tlssocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5109/FileZilla3/trunk/src/engine/tlssocket.h
+END
+servercapabilities.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3630/FileZilla3/trunk/src/engine/servercapabilities.cpp
+END
+pathcache.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4835/FileZilla3/trunk/src/engine/pathcache.cpp
+END
+serverpath.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5041/FileZilla3/trunk/src/engine/serverpath.cpp
+END
+notification.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5108/FileZilla3/trunk/src/engine/notification.cpp
+END
+logging.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/logging.cpp
+END
+engine.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4305/FileZilla3/trunk/src/engine/engine.vcproj
+END
+proxy.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/proxy.h
+END
+ratelimiter.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/ratelimiter.h
+END
+sftpcontrolsocket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/sftpcontrolsocket.cpp
+END
+string_coalescer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/string_coalescer.cpp
+END
+local_filesys.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5041/FileZilla3/trunk/src/engine/local_filesys.cpp
+END
+directorycache.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/directorycache.cpp
+END
+httpcontrolsocket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4813/FileZilla3/trunk/src/engine/httpcontrolsocket.cpp
+END
+ControlSocket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/ControlSocket.cpp
+END
+timeex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/timeex.cpp
+END
+backend.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2682/FileZilla3/trunk/src/engine/backend.h
+END
+externalipresolver.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4804/FileZilla3/trunk/src/engine/externalipresolver.cpp
+END
+directorylisting.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/directorylisting.cpp
+END
+iothread.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4802/FileZilla3/trunk/src/engine/iothread.cpp
+END
+engineprivate.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/engineprivate.cpp
+END
+FileZillaEngine.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/FileZillaEngine.cpp
+END
+transfersocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/transfersocket.h
+END
+threadex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/679/FileZilla3/trunk/src/engine/threadex.cpp
+END
+server.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4889/FileZilla3/trunk/src/engine/server.cpp
+END
+ftpcontrolsocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/ftpcontrolsocket.h
+END
+tlssocket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5108/FileZilla3/trunk/src/engine/tlssocket.cpp
+END
+rtt.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/4849/FileZilla3/trunk/src/engine/rtt.h
+END
+directorylistingparser.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/directorylistingparser.h
+END
+filezilla.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3628/FileZilla3/trunk/src/engine/filezilla.h
+END
+proxy.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/4814/FileZilla3/trunk/src/engine/proxy.cpp
+END
+ratelimiter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/ratelimiter.cpp
+END
+pathcache.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/pathcache.h
+END
+logging_private.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2906/FileZilla3/trunk/src/engine/logging_private.h
+END
+servercapabilities.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/servercapabilities.h
+END
+backend.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/backend.cpp
+END
+socket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5114/FileZilla3/trunk/src/engine/socket.cpp
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4849/FileZilla3/trunk/src/engine/Makefile.am
+END
+sftpcontrolsocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/sftpcontrolsocket.h
+END
+misc.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/4799/FileZilla3/trunk/src/engine/misc.cpp
+END
+directorycache.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4802/FileZilla3/trunk/src/engine/directorycache.h
+END
+transfersocket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5115/FileZilla3/trunk/src/engine/transfersocket.cpp
+END
+httpcontrolsocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/httpcontrolsocket.h
+END
+ControlSocket.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5127/FileZilla3/trunk/src/engine/ControlSocket.h
+END
+sizeformatting_base.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/3861/FileZilla3/trunk/src/engine/sizeformatting_base.cpp
+END
+commands.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/3630/FileZilla3/trunk/src/engine/commands.cpp
+END
+ftpcontrolsocket.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5112/FileZilla3/trunk/src/engine/ftpcontrolsocket.cpp
+END
+iothread.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4775/FileZilla3/trunk/src/engine/iothread.h
+END
+local_path.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4010/FileZilla3/trunk/src/engine/local_path.cpp
+END
+rtt.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/5041/FileZilla3/trunk/src/engine/rtt.cpp
+END
+directorylistingparser.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/5041/FileZilla3/trunk/src/engine/directorylistingparser.cpp
+END
+option_change_event_handler.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/4757/FileZilla3/trunk/src/engine/option_change_event_handler.cpp
+END

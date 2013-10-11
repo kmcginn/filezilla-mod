@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/5041/FileZilla3/trunk/m4
+END
+icopyhookw.m4
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5041/FileZilla3/trunk/m4/icopyhookw.m4
+END
+wxwin.m4
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/5041/FileZilla3/trunk/m4/wxwin.m4
+END
+fz_check_tinyxml.m4
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5041/FileZilla3/trunk/m4/fz_check_tinyxml.m4
+END
+pkg.m4
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5041/FileZilla3/trunk/m4/pkg.m4
+END
+cppunit.m4
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5041/FileZilla3/trunk/m4/cppunit.m4
+END
+fz_checkversion.m4
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/3777/FileZilla3/trunk/m4/fz_checkversion.m4
+END
+libgnutls.m4
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/3777/FileZilla3/trunk/m4/libgnutls.m4
+END
+check_cxx0x.m4
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/4834/FileZilla3/trunk/m4/check_cxx0x.m4
+END

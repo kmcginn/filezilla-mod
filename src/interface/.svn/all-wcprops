@@ -1,0 +1,1031 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5141/FileZilla3/trunk/src/interface
+END
+recursive_operation.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/recursive_operation.h
+END
+power_management.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/power_management.h
+END
+timeformatting.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3957/FileZilla3/trunk/src/interface/timeformatting.h
+END
+locale_initializer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/locale_initializer.cpp
+END
+verifycertdialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/5097/FileZilla3/trunk/src/interface/verifycertdialog.cpp
+END
+sftp_crypt_info_dlg.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/2250/FileZilla3/trunk/src/interface/sftp_crypt_info_dlg.h
+END
+ipcmutex.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/ipcmutex.h
+END
+updatewizard.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5057/FileZilla3/trunk/src/interface/updatewizard.cpp
+END
+recentserverlist.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/recentserverlist.cpp
+END
+sitemanager.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/3932/FileZilla3/trunk/src/interface/sitemanager.h
+END
+listingcomparison.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/listingcomparison.h
+END
+splitter.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/splitter.h
+END
+RemoteTreeView.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3545/FileZilla3/trunk/src/interface/RemoteTreeView.h
+END
+bookmarks_dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/bookmarks_dialog.h
+END
+volume_enumerator.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3631/FileZilla3/trunk/src/interface/volume_enumerator.h
+END
+defaultfileexistsdlg.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2790/FileZilla3/trunk/src/interface/defaultfileexistsdlg.h
+END
+buildinfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/buildinfo.h
+END
+LocalListView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5113/FileZilla3/trunk/src/interface/LocalListView.cpp
+END
+queueview_successful.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/queueview_successful.h
+END
+sitemanager_dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/sitemanager_dialog.h
+END
+context_control.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4869/FileZilla3/trunk/src/interface/context_control.cpp
+END
+queue.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4881/FileZilla3/trunk/src/interface/queue.cpp
+END
+filter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/filter.cpp
+END
+statuslinectrl.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/statuslinectrl.h
+END
+recursive_operation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/recursive_operation.cpp
+END
+queueview_failed.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/queueview_failed.h
+END
+viewheader.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/viewheader.h
+END
+dragdropmanager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/dragdropmanager.cpp
+END
+xmlfunctions.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4884/FileZilla3/trunk/src/interface/xmlfunctions.h
+END
+sitemanager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/sitemanager.cpp
+END
+Options.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/Options.h
+END
+auto_ascii_files.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4757/FileZilla3/trunk/src/interface/auto_ascii_files.cpp
+END
+asksavepassworddialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/asksavepassworddialog.h
+END
+verifycertdialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/verifycertdialog.h
+END
+locale_initializer.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1923/FileZilla3/trunk/src/interface/locale_initializer.h
+END
+bookmarks_dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/bookmarks_dialog.cpp
+END
+led.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/4860/FileZilla3/trunk/src/interface/led.h
+END
+defaultfileexistsdlg.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/defaultfileexistsdlg.cpp
+END
+buildinfo.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/buildinfo.cpp
+END
+statusbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/statusbar.h
+END
+clearprivatedata.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/clearprivatedata.h
+END
+netconfwizard.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/netconfwizard.h
+END
+viewheader.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/viewheader.cpp
+END
+queueview_failed.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/queueview_failed.cpp
+END
+state.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5059/FileZilla3/trunk/src/interface/state.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5041/FileZilla3/trunk/src/interface/Makefile.am
+END
+Options.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4884/FileZilla3/trunk/src/interface/Options.cpp
+END
+filter_conditions_dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/4885/FileZilla3/trunk/src/interface/filter_conditions_dialog.cpp
+END
+menu_bar.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/menu_bar.h
+END
+prefix.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/prefix.cpp
+END
+Mainfrm.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/4860/FileZilla3/trunk/src/interface/Mainfrm.h
+END
+filelistctrl.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4838/FileZilla3/trunk/src/interface/filelistctrl.cpp
+END
+listctrlex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/listctrlex.h
+END
+search.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/search.cpp
+END
+window_state_manager.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3176/FileZilla3/trunk/src/interface/window_state_manager.h
+END
+auto_ascii_files.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2777/FileZilla3/trunk/src/interface/auto_ascii_files.h
+END
+sizeformatting.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/3643/FileZilla3/trunk/src/interface/sizeformatting.h
+END
+chmoddialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/chmoddialog.cpp
+END
+welcome_dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5088/FileZilla3/trunk/src/interface/welcome_dialog.cpp
+END
+clearprivatedata.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/clearprivatedata.cpp
+END
+queue_storage.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4011/FileZilla3/trunk/src/interface/queue_storage.h
+END
+manual_transfer.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5072/FileZilla3/trunk/src/interface/manual_transfer.cpp
+END
+treectrlex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/treectrlex.cpp
+END
+inputdialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/inputdialog.h
+END
+export.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/1464/FileZilla3/trunk/src/interface/export.h
+END
+power_management.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4757/FileZilla3/trunk/src/interface/power_management.cpp
+END
+systemimagelist.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/systemimagelist.h
+END
+aboutdialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5137/FileZilla3/trunk/src/interface/aboutdialog.cpp
+END
+listingcomparison.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/listingcomparison.cpp
+END
+fileexistsdlg.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/fileexistsdlg.cpp
+END
+volume_enumerator.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/volume_enumerator.cpp
+END
+import.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/import.cpp
+END
+themeprovider.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4884/FileZilla3/trunk/src/interface/themeprovider.cpp
+END
+welcome_dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/welcome_dialog.h
+END
+chmoddialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/chmoddialog.h
+END
+inputdialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/inputdialog.cpp
+END
+statuslinectrl.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5041/FileZilla3/trunk/src/interface/statuslinectrl.cpp
+END
+quickconnectbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/quickconnectbar.h
+END
+interface.vcproj
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4305/FileZilla3/trunk/src/interface/interface.vcproj
+END
+RemoteListView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5113/FileZilla3/trunk/src/interface/RemoteListView.cpp
+END
+systemimagelist.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/systemimagelist.cpp
+END
+xh_text_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/xh_text_ex.h
+END
+LocalListView.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5113/FileZilla3/trunk/src/interface/LocalListView.h
+END
+conditionaldialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/conditionaldialog.h
+END
+filter.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/filter.h
+END
+aboutdialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/aboutdialog.h
+END
+verifyhostkeydialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/3154/FileZilla3/trunk/src/interface/verifyhostkeydialog.h
+END
+asksavepassworddialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/asksavepassworddialog.cpp
+END
+asyncrequestqueue.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/asyncrequestqueue.h
+END
+dialogex.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/dialogex.h
+END
+speedlimits_dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3658/FileZilla3/trunk/src/interface/speedlimits_dialog.cpp
+END
+dragdropmanager.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2795/FileZilla3/trunk/src/interface/dragdropmanager.h
+END
+led.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4860/FileZilla3/trunk/src/interface/led.cpp
+END
+xh_menu_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/xh_menu_ex.h
+END
+LocalTreeView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5059/FileZilla3/trunk/src/interface/LocalTreeView.cpp
+END
+statusbar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/statusbar.cpp
+END
+loginmanager.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/loginmanager.h
+END
+xh_toolb_ex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/xh_toolb_ex.cpp
+END
+view.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/view.cpp
+END
+aui_notebook_ex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4937/FileZilla3/trunk/src/interface/aui_notebook_ex.cpp
+END
+FileZilla.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4869/FileZilla3/trunk/src/interface/FileZilla.cpp
+END
+fileexistsdlg.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/fileexistsdlg.h
+END
+quickconnectbar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/quickconnectbar.cpp
+END
+xh_text_ex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/xh_text_ex.cpp
+END
+import.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/1474/FileZilla3/trunk/src/interface/import.h
+END
+state.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5059/FileZilla3/trunk/src/interface/state.cpp
+END
+conditionaldialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/conditionaldialog.cpp
+END
+QueueView.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/QueueView.h
+END
+RemoteListView.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5113/FileZilla3/trunk/src/interface/RemoteListView.h
+END
+menu_bar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/menu_bar.cpp
+END
+edithandler.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/edithandler.h
+END
+timeformatting.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4305/FileZilla3/trunk/src/interface/timeformatting.cpp
+END
+customheightlistctrl.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/customheightlistctrl.h
+END
+verifyhostkeydialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/4862/FileZilla3/trunk/src/interface/verifyhostkeydialog.cpp
+END
+asyncrequestqueue.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/asyncrequestqueue.cpp
+END
+xh_menu_ex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/xh_menu_ex.cpp
+END
+filteredit.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/filteredit.h
+END
+filter_conditions_dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/filter_conditions_dialog.h
+END
+toolbar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/toolbar.cpp
+END
+prefix.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2520/FileZilla3/trunk/src/interface/prefix.h
+END
+loginmanager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/loginmanager.cpp
+END
+filelist_statusbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4305/FileZilla3/trunk/src/interface/filelist_statusbar.h
+END
+queue_storage.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/queue_storage.cpp
+END
+search.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/3358/FileZilla3/trunk/src/interface/search.h
+END
+view.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/view.h
+END
+aui_notebook_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/3735/FileZilla3/trunk/src/interface/aui_notebook_ex.h
+END
+QueueView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5083/FileZilla3/trunk/src/interface/QueueView.cpp
+END
+xh_toolb_ex.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/xh_toolb_ex.h
+END
+filezilla.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/3628/FileZilla3/trunk/src/interface/filezilla.h
+END
+edithandler.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/edithandler.cpp
+END
+treectrlex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/treectrlex.h
+END
+manual_transfer.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2785/FileZilla3/trunk/src/interface/manual_transfer.h
+END
+commandqueue.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/3462/FileZilla3/trunk/src/interface/commandqueue.h
+END
+queue.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/queue.h
+END
+context_control.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/context_control.h
+END
+xmlfunctions.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4884/FileZilla3/trunk/src/interface/xmlfunctions.cpp
+END
+filteredit.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/filteredit.cpp
+END
+filelist_statusbar.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3860/FileZilla3/trunk/src/interface/filelist_statusbar.cpp
+END
+wrapengine.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3076/FileZilla3/trunk/src/interface/wrapengine.h
+END
+textctrlex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4069/FileZilla3/trunk/src/interface/textctrlex.cpp
+END
+toolbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/toolbar.h
+END
+netconfwizard.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4827/FileZilla3/trunk/src/interface/netconfwizard.cpp
+END
+StatusView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/StatusView.cpp
+END
+cmdline.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5103/FileZilla3/trunk/src/interface/cmdline.h
+END
+themeprovider.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4802/FileZilla3/trunk/src/interface/themeprovider.h
+END
+commandqueue.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5083/FileZilla3/trunk/src/interface/commandqueue.cpp
+END
+dndobjects.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/dndobjects.h
+END
+Mainfrm.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5137/FileZilla3/trunk/src/interface/Mainfrm.cpp
+END
+dialogex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/dialogex.cpp
+END
+listctrlex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5041/FileZilla3/trunk/src/interface/listctrlex.cpp
+END
+ipcmutex.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/ipcmutex.cpp
+END
+sftp_crypt_info_dlg.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/3630/FileZilla3/trunk/src/interface/sftp_crypt_info_dlg.cpp
+END
+wrapengine.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5056/FileZilla3/trunk/src/interface/wrapengine.cpp
+END
+window_state_manager.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/window_state_manager.cpp
+END
+filelistctrl.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4833/FileZilla3/trunk/src/interface/filelistctrl.h
+END
+sizeformatting.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/3643/FileZilla3/trunk/src/interface/sizeformatting.cpp
+END
+splitter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/splitter.cpp
+END
+speedlimits_dialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/speedlimits_dialog.h
+END
+RemoteTreeView.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/4887/FileZilla3/trunk/src/interface/RemoteTreeView.cpp
+END
+updatewizard.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5057/FileZilla3/trunk/src/interface/updatewizard.h
+END
+recentserverlist.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/636/FileZilla3/trunk/src/interface/recentserverlist.h
+END
+LocalTreeView.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/3545/FileZilla3/trunk/src/interface/LocalTreeView.h
+END
+textctrlex.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4069/FileZilla3/trunk/src/interface/textctrlex.h
+END
+cmdline.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5103/FileZilla3/trunk/src/interface/cmdline.cpp
+END
+sitemanager_dialog.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/5072/FileZilla3/trunk/src/interface/sitemanager_dialog.cpp
+END
+queueview_successful.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/3958/FileZilla3/trunk/src/interface/queueview_successful.cpp
+END
+dndobjects.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4786/FileZilla3/trunk/src/interface/dndobjects.cpp
+END
+filezillaapp.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4869/FileZilla3/trunk/src/interface/filezillaapp.h
+END
+export.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4775/FileZilla3/trunk/src/interface/export.cpp
+END
+StatusView.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/StatusView.h
+END
+customheightlistctrl.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/5112/FileZilla3/trunk/src/interface/customheightlistctrl.cpp
+END

@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5068/FileZilla3/trunk/src/putty/windows
+END
+windefs.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/899/FileZilla3/trunk/src/putty/windows/windefs.c
+END
+winhandl.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4070/FileZilla3/trunk/src/putty/windows/winhandl.c
+END
+winnet.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4159/FileZilla3/trunk/src/putty/windows/winnet.c
+END
+winmisc.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4070/FileZilla3/trunk/src/putty/windows/winmisc.c
+END
+winstuff.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4072/FileZilla3/trunk/src/putty/windows/winstuff.h
+END
+winstore.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4072/FileZilla3/trunk/src/putty/windows/winstore.c
+END
+wintime.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/834/FileZilla3/trunk/src/putty/windows/wintime.c
+END
+psftp.rc
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/3900/FileZilla3/trunk/src/putty/windows/psftp.rc
+END
+wincons.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4070/FileZilla3/trunk/src/putty/windows/wincons.c
+END
+rcstuff.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/489/FileZilla3/trunk/src/putty/windows/rcstuff.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4072/FileZilla3/trunk/src/putty/windows/Makefile.am
+END
+winpgntc.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4070/FileZilla3/trunk/src/putty/windows/winpgntc.c
+END
+version.rc2
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5068/FileZilla3/trunk/src/putty/windows/version.rc2
+END
+winsftp.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4070/FileZilla3/trunk/src/putty/windows/winsftp.c
+END
+winnoise.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/412/FileZilla3/trunk/src/putty/windows/winnoise.c
+END
+pscp.ico
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/412/FileZilla3/trunk/src/putty/windows/pscp.ico
+END
+windows_manifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4293/FileZilla3/trunk/src/putty/windows/windows_manifest.xml
+END

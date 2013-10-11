@@ -1,0 +1,16 @@
+K 10
+svn:ignore
+V 157
+.deps
+Debug
+Debug Unicode
+Makefile
+Makefile.in
+Release
+Release Unicode
+interface.vcproj.*
+interface.vcxproj
+interface.vcxproj.filters
+interface.vcxproj.user
+
+END

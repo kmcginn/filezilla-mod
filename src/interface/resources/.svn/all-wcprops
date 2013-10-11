@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5141/FileZilla3/trunk/src/interface/resources
+END
+leds.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/leds.png
+END
+MacInfo.plist.in
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/5137/FileZilla3/trunk/src/interface/resources/MacInfo.plist.in
+END
+defaultfilters.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1786/FileZilla3/trunk/src/interface/resources/defaultfilters.xml
+END
+dialogs.xrc
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/5141/FileZilla3/trunk/src/interface/resources/dialogs.xrc
+END
+filezilla.rc
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/3281/FileZilla3/trunk/src/interface/resources/filezilla.rc
+END
+dropdown.png
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/dropdown.png
+END
+windows_manifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/4293/FileZilla3/trunk/src/interface/resources/windows_manifest.xml
+END
+menus.xrc
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/4799/FileZilla3/trunk/src/interface/resources/menus.xrc
+END
+FileZilla.ico
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/1620/FileZilla3/trunk/src/interface/resources/FileZilla.ico
+END
+finished.wav
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1647/FileZilla3/trunk/src/interface/resources/finished.wav
+END
+down.png
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/down.png
+END
+settings.xrc
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/5072/FileZilla3/trunk/src/interface/resources/settings.xrc
+END
+version.rc.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/5068/FileZilla3/trunk/src/interface/resources/version.rc.in
+END
+toolbar.xrc
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4859/FileZilla3/trunk/src/interface/resources/toolbar.xrc
+END
+pngclean.sh
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1627/FileZilla3/trunk/src/interface/resources/pngclean.sh
+END
+theme.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/2150/FileZilla3/trunk/src/interface/resources/theme.xml
+END
+FileZilla.icns
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/1738/FileZilla3/trunk/src/interface/resources/FileZilla.icns
+END
+quickconnectbar.xrc
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/4857/FileZilla3/trunk/src/interface/resources/quickconnectbar.xrc
+END
+up.png
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2224/FileZilla3/trunk/src/interface/resources/up.png
+END
+netconfwizard.xrc
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2627/FileZilla3/trunk/src/interface/resources/netconfwizard.xrc
+END
+xrcclean.sh
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/347/FileZilla3/trunk/src/interface/resources/xrcclean.sh
+END
+filezilla.svg
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/4539/FileZilla3/trunk/src/interface/resources/filezilla.svg
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/5041/FileZilla3/trunk/src/interface/resources/Makefile.am
+END

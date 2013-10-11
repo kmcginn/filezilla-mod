@@ -1,0 +1,13 @@
+K 10
+svn:ignore
+V 86
+.deps
+Makefile
+Makefile.in
+Debug
+Release
+fzshellext.sln
+fzshellext.ncb
+fzshellext.suo
+
+END

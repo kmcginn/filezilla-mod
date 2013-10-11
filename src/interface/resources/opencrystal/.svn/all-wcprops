@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4782/FileZilla3/trunk/src/interface/resources/opencrystal
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/4782/FileZilla3/trunk/src/interface/resources/opencrystal/Makefile.am
+END
+theme.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2989/FileZilla3/trunk/src/interface/resources/opencrystal/theme.xml
+END

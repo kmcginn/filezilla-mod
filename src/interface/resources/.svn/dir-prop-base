@@ -1,0 +1,10 @@
+K 10
+svn:ignore
+V 60
+filezilla.aps
+MacInfo.plist
+Makefile.in
+Makefile
+version.rc
+
+END

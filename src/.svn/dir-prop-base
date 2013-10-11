@@ -1,0 +1,14 @@
+K 10
+svn:ignore
+V 107
+FileZilla.ncb
+FileZilla.opensdf
+FileZilla.sdf
+FileZilla.suo
+FileZilla.v11.suo
+Makefile
+Makefile.in
+bin
+lib
+
+END
