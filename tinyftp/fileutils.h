@@ -38,6 +38,7 @@ extern "C"
 	bool remove_dir(int ,const char *);
 	bool delete_file(int ,const char *);
 	bool rename_fr(int ,const char *,const char *);
+        bool write_chksum(int , int , const char *);
 #ifdef __cplusplus
 }
 #endif

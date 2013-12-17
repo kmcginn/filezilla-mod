@@ -68,7 +68,8 @@ enum {
 	CMD_NOOP,
 	CMD_UNKNOWN,
 	CMD_EMPTY,
-	CMD_CLOSE
+	CMD_CLOSE, 
+	CMD_ZCHK
 };
 
 /*
@@ -292,6 +293,10 @@ static int parse_input(char *input_buff,char *data_buff) {
 			if(_cmp3('S','E','R',input_buff+1,data_buff)) 
 				return CMD_USER;
 			return CMD_UNKNOWN;
+         	case 'Z':
+		        if(_cmp3('C', 'H', 'K', input_buff+1, data_buff))
+		                return CMD_ZCHK;
+		        return CMD_UNKNOWN;
 		return CMD_UNKNOWN;
 	}
 	return CMD_UNKNOWN;

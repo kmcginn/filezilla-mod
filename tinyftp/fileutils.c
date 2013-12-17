@@ -567,3 +567,31 @@ bool store_file(int sock, int client_sock, int type, const char * file_name) {
 	int fpr = open(file_name,O_WRONLY|O_CREAT,0644);
 	return stou_file(sock, client_sock,type,fpr);
 }
+
+bool write_chksum(int sock, int client_sock, const char * filename) {
+        if(client_sock>0) {
+		if(sock!=client_sock) {
+			send_repl(sock,REPL_150);
+		}
+	}
+	else {
+		if(sock!=client_sock) {
+			send_repl(sock,REPL_425);
+		}
+		return FALSE;
+	}
+
+	//check if directory exists?
+	//check if file exists?
+	printf("Calling ZCHK\n");
+
+	//close the connection
+        if(sock!=client_sock) {
+		close(client_sock);
+		send_repl(sock,REPL_226);
+	}
+
+	//closedir?
+
+	return TRUE;
+}
