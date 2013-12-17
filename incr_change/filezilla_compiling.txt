@@ -31,4 +31,4 @@ Do anything else it tells you to do, I forget if I needed anything else from it
 
 ./configure (if it gives you errors, try to deal with them)
 make
-make install (maybe not needed?)
+filezilla can then be run at /compile/src/interface/filezilla
