@@ -88,7 +88,7 @@ int get_type(const char *type) {
  * in commands like "LIST","STOR","RETR"
  */
 int make_client_connection(int sock_fd,int client_port,const char* client_addr) {
-	if(client_port<1) {3
+	if(client_port<1) {
 		send_repl(sock_fd,REPL_425);
 		return -1;
 	}
@@ -607,7 +607,7 @@ int interract(int conn_fd,cmd_opts *opts) {
 		                else {
 				        //check that filename parameter is specified
 				        if(data_buff==NULL | strlen(data_buff)==0 || data_buff[0] == '\0') {
-				                send_rpl(conn_fd, REPL_501);
+				                send_repl(conn_fd, REPL_501);
 				        }
 				        else {
 				                //get socket for client
@@ -619,6 +619,7 @@ int interract(int conn_fd,cmd_opts *opts) {
 				                //close the connection
 					        client_fd = -1;
 		                        }
+				}
 				break;
 			default:
 				send_repl(conn_fd,REPL_502);

@@ -1,0 +1,68 @@
+12/16/2013
+
+added documentation files to Git repository
+compiled tinyftp successfully
+ran tinyftp with: tinyftp -s 127.0.0.1 -p 9909 -c .
+this started a server on the localhost at port 9909
+
+used PuTTY to get a new console, ran filezilla from: 
+/compile/src/interface/filezilla
+connected to 127.0.0.1 port 9909 from the quick connect bar
+successfully connects to the server!
+calls the "list" command to return the files in the current directory
+
+noticed that the bottom of Filezilla has a tab for failed transfers with a
+reason column - should add failed uploads/downloads from bad checksums to that
+
+STARTING V1
+based on work done in class, looked in tinyftp's connections.c for where the 
+various FTP commands are implemented
+found case statements around line 323 in interract function
+noticed CMD_LIST and other constants defined
+found enum for commands in cmdparser.h, added CMD_ZCHK
+
+noticed that I need to return CMD_ZCHK from parse_input() located in cmdparser.h
+added case statement based on pattern to return CMD_ZCHK when user input is ZCHK
+
+went back to interract, added case for CMD_ZCHK based on pattern of others
+
+looked at LIST command to see how it works - seems like you need to create client_fd
+from make_client_connection(conn_fd, client_port, client_addr) to be able to write
+responses to the client?
+looked at the write_list function that it calls - it's defined in fileutils.c
+has lots of checks to see if sock!=client_sock
+conn_fd and client_port seem to be sockets
+
+should probably create a function like write_checksum that takes in conn_fd, client_fd,
+and then the file that it is trying to check
+that function should handle the network stuff, and call another function which actually
+returns the md5 checksum string of the inputted file - that can be a dummy for now
+message that is sent to the client seems to usually be put in a char array
+
+look at how delete_file is called in connections.c to see how you get a filename
+filename just seems to be in the data_buff! - need to check that buffer for errors
+
+added error checking of data_buff in interract's CMD_ZCHK case to make sure that it is not 
+null, has a string of non-zero length, and does not start with a null character
+
+note: when adding new functions, should add their prototypes to defines.h
+
+use send_repl_client(client_sock, line) to send the message to the client
+
+added retrieving the client socket and then calling the write_chksum function
+to the CMD_ZCHK case in interract
+
+added write_chksum function prototype to fileutils.h
+
+created write_chksum function implementation in fileutils.c
+
+used error checking on sockets from write_list
+
+used connection closing from write_list
+
+added print statement to write_chksum to test that everything up to this point has worked
+
+command IS recognized, but throwing error 425
+not printing the message that would indicate reaching write_chksum
+
+things to check for tomorrow: where is error 425 sent?
