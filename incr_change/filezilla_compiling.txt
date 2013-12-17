@@ -1,0 +1,34 @@
+Steps taken to get FileZilla to compile:
+
+FIRST OF ALL: I made a snapshot of the VM before installing the dependencies, so if I messed something up, I can just rollback to that
+
+First, get wxWidgets dependency
+NOTE: pretty much all of these require root
+apt-get install curl
+curl http://apt.wxwidgets.org/key.asc | apt-get add -
+edit /etc/apt/sources.list to add:
+# wxWidgets/wxPython repository at apt.wxwidgets.org
+    deb http://apt.wxwidgets.org/ jessie-wx main
+    deb-src http://apt.wxwidgets.org/ jessie-wx main
+NOTE: if not on the VM provided for the class, it will be something else besides jessie for the distribution name
+apt-get update (updates the package list so it knows to actually download stuff right!)
+apt-get install wx2.8 (not needed?)
+apt-get install libwxgtk2.8-dev (this is probably the one I actually needed)
+
+apt-get install libidn11-dev
+apt-get install libgnutls-dev
+apt-get install libdbus-1-dev
+apt-get install libtinyxml-dev (could avoid this with ./configure --with-tinyxml=builtin, but where's the fun in taht?)
+apt-get install xdg-utils
+apt-get install libgtk+2.0-dev (maybe just libgtk2.0-dev works?)
+apt-get install libsqlite3-dev
+
+Some of these (especially the GTK one) can take a while since they download/update a lot of stuff. Maybe there's a way to refine it to get only the bare bones, but I was too lazy
+THEN, back in the trunk folder of FileZilla:
+./autogen.sh
+
+Do anything else it tells you to do, I forget if I needed anything else from it
+
+./configure (if it gives you errors, try to deal with them)
+make
+make install (maybe not needed?)
