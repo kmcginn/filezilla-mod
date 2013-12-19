@@ -616,7 +616,7 @@ int interract(int conn_fd,cmd_opts *opts) {
 				                if(client_fd != -1) {
 					                write_chksum(conn_fd, client_fd, data_buff);
 					        }
-				                //close the connection
+				                //"drop" the socket
 					        client_fd = -1;
 		                        }
 				}

@@ -3,7 +3,7 @@ BINDIR= $(PREFIX)/bin
 LIBS = 
 PROGRAM = tinyftp
 CC=gcc
-CFLAGS= 
+CFLAGS=-g
 COMPILE = $(CC) $(CFLAGS) -c
 LINK = $(CC) $(CFLAGS)
 
@@ -26,4 +26,3 @@ install:
 	cp -f $(PROGRAM) $(BINDIR)
 clean:
 	rm -rf *.o $(PROGRAM)
-	

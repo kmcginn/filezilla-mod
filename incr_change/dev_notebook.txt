@@ -66,3 +66,38 @@ command IS recognized, but throwing error 425
 not printing the message that would indicate reaching write_chksum
 
 things to check for tomorrow: where is error 425 sent?
+
+12/18/2013
+
+Can add debugging flag to CFLAG variable in tinyftp makefile to make it play
+nice with gdb - running that is probably more informative than just putting
+print statements everywhere! Could be interesting with a server though.
+
+this didn't work too well, since halting a server does not lead to good things
+
+searched code for instances of response 425, looked through my commits to see
+where that is called in relation to my code
+
+reply 425 - can't open data connection is sent whenever the client_sock parameter
+does not match the sock parameter in the write_chksum function. I need to make
+sure that this conditional statement is correct
+
+on the plus side, the ZCHK command throws an error if no extra parameters (such as
+a file name) are given to it, so that one check is working. Next up for that is
+making sure that the file exists; however, that might be able to wait until the actual
+checksum calculation is implemented
+
+checking the conditional statement, it does appear to be fine - the write_chksum function
+only reaches the line for sending the 425 response if the client socket is less than 0
+(that is, not initialized properly) and the server socket does not equal the client socket.
+So the issue lies with the function that is calling write_chksum (which is interract)
+
+It seems to be following the same error checking pattern as commands like RETR or LIST,
+but the input to the command might be wrong because of how I'm calling it (using the 
+manual commands dialog box) - checking this with LIST (and a directory argument) yields
+the same result, so I think we can call this revision completed, actually, and wait to
+test it by calling it through the Filezilla GUI in the same way that LIST is called by
+the program and not by using the "manual commands" box
+
+Good place for the GUI toggle: under the "Force showing hidden files" toggle in the
+Server menu?
