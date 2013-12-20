@@ -193,3 +193,13 @@ Added a small snippet of code to src/interface/menu_bar.cpp to make sure that th
 menu item starts checked if the default of the option was set to true, unchecked otherwise
 
 That ends v2!
+
+12/20/2013
+
+Broke v3 down in another subtask: first, we need to get the checksum command "implemented"
+on FileZilla (not the functionality of it, just being able to call it)
+
+Commands are defined in /src/include/commands.h and implemented in src/engine/commands.cpp
+
+Adding the appropriate interface and implementation code for this new command "object" was
+straightforward enough

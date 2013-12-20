@@ -100,3 +100,23 @@ CChmodCommand::CChmodCommand(const CServerPath& path, const wxString& file, cons
 	m_file = file;
 	m_permission = permission;
 }
+
+//constructor for Checksum command
+CChecksumCommand::CChecksumCommand(const wxString& localFile, const CServerPath& remotePath, const wxString& remoteFile) {
+        m_localFile = localFile;
+        m_remotePath = remotePath;
+        m_remoteFile = remoteFile;
+}
+
+//standard accessor functions for the checksum command
+wxString CChecksumCommand::GetLocalFile() const {
+        return m_localFile;
+}
+
+CServerPath CChecksumCommand::GetRemotePath() const {
+        return m_remotePath;
+}
+
+wxString CChecksumCommand::GetRemoteFile() const {
+        return m_remoteFile;
+}

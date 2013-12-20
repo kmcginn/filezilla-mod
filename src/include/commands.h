@@ -19,7 +19,7 @@ enum Command
 	cmd_rename,
 	cmd_chmod,
 	cmd_raw,
-
+	cmd_checksum,
 	// Only used internally
 	cmd_cwd,
 	cmd_rawtransfer
@@ -229,6 +229,21 @@ protected:
 	CServerPath m_path;
 	wxString m_file;
 	wxString m_permission;
+};
+
+//interface for the checksum command within FileZilla
+DECLARE_COMMAND(CChecksumCommand, cmd_checksum)
+
+         CChecksumCommand(const wxString& localFile, const CServerPath& remotePath, const wxString& remoteFile);
+
+         wxString GetLocalFile() const;
+         CServerPath GetRemotePath() const;
+         wxString GetRemoteFile() const;
+
+protected:
+         wxString m_localFile;
+         CServerPath m_remotePath;
+         wxString m_remoteFile;
 };
 
 #endif
