@@ -692,6 +692,27 @@ void CMainFrame::OnMenuHandler(wxCommandEvent &event)
 				pState->ChangeRemoteDir(path, _T(""), LIST_FLAG_REFRESH);
 		}
 	}
+
+	else if (event.GetId() == XRCID("ID_MENU_SERVER_CHECKSUM") )
+	{
+	        //find out if checksum was initially disabled
+	        bool checksumDisabled = COptions::Get()->GetOptionVal(OPTION_USE_CHECKSUM) ? 0 : 1;
+	  
+	        //user is enabling checksum verification
+	        if (checksumDisabled)
+	        {
+	                //create a dialog box to warn the user about the use of this feature
+	                CConditionalDialog dlg(this, CConditionalDialog::viewhidden, CConditionalDialog::ok, false);
+	                dlg.SetTitle(_("Verify files using checksums"));
+
+	                dlg.AddText(_("Note that this feature is only supported by servers that have the custom FTP command ZCHK."));
+	                dlg.AddText(_("As of right now, only the custom version of tinyftp included with this modified FileZilla supports the command."));
+	                dlg.Run();
+	        }
+
+	        //toggle checksum verification option
+	        COptions::Get()->SetOption(OPTION_USE_CHECKSUM, checksumDisabled ? 1 : 0);
+	}
 	else if (event.GetId() == XRCID("ID_EXPORT"))
 	{
 		CExportDialog dlg(this, m_pQueueView);

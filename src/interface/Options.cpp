@@ -74,6 +74,7 @@ static const t_Option options[OPTIONS_NUM] =
 	{ "Speedlimit outbound", number, _T("20"), normal },
 	{ "Speedlimit burst tolerance", number, _T("0"), normal },
 	{ "View hidden files", number, _T("0"), normal },
+	{ "Use checksum", number, _T("0"), normal },
 	{ "Preserve timestamps", number, _T("0"), normal },
 	{ "Socket recv buffer size (v2)", number, _T("4194304"), normal }, // Make it large enough by default
 														 // to enable a large TCP window scale

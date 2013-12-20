@@ -101,3 +101,95 @@ the program and not by using the "manual commands" box
 
 Good place for the GUI toggle: under the "Force showing hidden files" toggle in the
 Server menu?
+
+12/19/2013
+
+STARTING V2
+
+Initial investigations led me to a dialog box that is launched at line 670 in:
+/src/interface/Mainfrm.cpp
+
+This is related to the "Force showing hidden files" toggle that I want to replicate
+
+This snippet shows a few useful things: 
+how to create and launch an alert dialog (which we might use for the "failed" 
+downloads/uploads in place of integrating the bottom display at first)
+
+how to get/set certain option values:
+COptions::Get()->GetOptionVal(VALUE_NAME) (or SetOptionVal(VALUE_NAME, value))
+
+the event id for clicking on that toggle is: "ID_MENU_SERVER_VIEWHIDDEN"
+
+creating an event ID for the checksum toggle should probably follow a similar convention
+
+searching on that event ID leads me to menu_bar.cpp line 77
+
+That shows how to make a menubar option have a checkmark after it:
+menubar->Check(XRCID("GUI_ELEMENT_NAME"), boolean)
+
+They like using the ternary operator (condition?true:false) for the boolean value
+
+still need to find where the thing is added to the menubar (and specifically the server
+submenu)
+
+found an xml(?) file: /src/interface/resources/menus.xrc
+this has an entry for the View Hidden Files option, so I think that if I add my toggle
+there in the same XML format, it should add it to the GUI - this meshes with what I know
+about GUIs from Android application development
+
+Doing a quick search yields this site: http://docs.wxwidgets.org/trunk/overview_xrcformat.html
+Which does seem to confirm that you add elements there, and that this file is not automatically
+generated (messing with something like that would not be super fun)
+
+Adding an entry for my toggle with id: "ID_MENU_SERVER_CHECKSUM"
+
+After recompiling, it seems that just adding the XML object is not quite enough, since it did
+not appear. Hmm.
+
+Seems like we need to add OPTION_USE_CHECKSUM in include/optionsbase.h (done)
+
+grepping through the source code does not reveal too much about how the server menu and its
+child menuitems are added to the GUI... trying a reconfigure/recompile first, and if that doesn't
+work, I'll try digging deeper
+
+Turns out adding to include/optionsbase.h created a few problems in src/interface/Options.cpp,
+since it creates an array of tOptions based on the enums created in optionsbase.h and a few
+other areas - since I hadn't defined an entry for the checksum option that I added, the count
+was off, and was causing compilation problems. Adding an entry for the checksum option fixed that
+problem.
+
+Still no appearance of the new menu option. I tried changing the label on an existing menu option,
+and it did not change in the GUI, even after doing a quick compile (not from scratch). So the
+program must be getting its GUI information from SOMEWHERE else, and not that file dynamically,
+as wxWidget's website claimed.
+
+Grepping around lead me to look at the translation files, and the text for "Force showing hidden
+files" is in resources.h - attempted to find that file, but it turns out that that file is created
+during the compile process from the .xrc files so that the translation stuff can parse the text.
+This doesn't quite solve the problem of the UI not updating.
+
+The mystery is solved! I grepped around looking for where Filezilla loads in .xrc files, and
+found the function LoadResourceFiles in interface/FileZilla.cpp. It uses a function to find
+ the directory where the resources/menus.xrc file is located, and the path that the program
+has been using is /usr/local/share/filezilla, NOT src/interface/resources (which is where
+my changes have been made). I fixed this issue by running "make install", which copied
+over the resource files from src/interface to the /usr/local... directory. Launching
+the FileZilla executable (even from /compile/src/interface) then showed the new GUI
+element! It is also checkable, although it currently does not do anything.
+
+Note: running "make install" requires root
+
+This issue was discovered by running FileZilla in gdb, setting a breakpoint just after
+the LoadResourceFiles function grabbed the directory, and then printing the contents
+of the variable that held the path
+
+Added code to src/interface/Mainfrm.cpp to launch a dialog box warning that the feature only
+works for custom servers (similar to the box for the "Force hidden files to show" option),
+but it isn't quite working
+
+Small error: I used GetOption instead of GetOptionVal. Easy fix, the popup now appears.
+
+Added a small snippet of code to src/interface/menu_bar.cpp to make sure that the checksum
+menu item starts checked if the default of the option was set to true, unchecked otherwise
+
+That ends v2!

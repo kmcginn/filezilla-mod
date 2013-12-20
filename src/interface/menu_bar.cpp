@@ -76,6 +76,10 @@ CMenuBar* CMenuBar::Load(CMainFrame* pMainFrame)
 
 	menubar->Check(XRCID("ID_MENU_SERVER_VIEWHIDDEN"), COptions::Get()->GetOptionVal(OPTION_VIEW_HIDDEN_FILES) ? true : false);
 
+	//initialize the check on the checksum menuitem to whatever the current
+	//value of its option is
+	menubar->Check(XRCID("ID_MENU_SERVER_CHECKSUM"), COptions::Get()->GetOptionVal(OPTION_VIEW_HIDDEN_FILES) ? true : false);
+
 	int mode = COptions::Get()->GetOptionVal(OPTION_COMPARISONMODE);
 	if (mode != 1)
 		menubar->Check(XRCID("ID_COMPARE_SIZE"), true);

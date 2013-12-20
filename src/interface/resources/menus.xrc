@@ -198,6 +198,10 @@
         <label>Force showing &amp;hidden files</label>
         <checkable>1</checkable>
       </object>
+      <object class="wxMenuItem" name="ID_MENU_SERVER_CHECKSUM">
+        <label>&amp;Verify files using checksums</label>
+	<checkable>1</checkable>
+      </object>
     </object>
     <object class="wxMenu" name="ID_MENU_BOOKMARKS">
       <label>&amp;Bookmarks</label>
