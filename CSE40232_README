@@ -11,6 +11,8 @@ Compiling FileZilla:
 
 cd trunk/
 
+./autogen.sh
+
 (IF COMPILE EXISTS)
 cd compile
 make distclean
