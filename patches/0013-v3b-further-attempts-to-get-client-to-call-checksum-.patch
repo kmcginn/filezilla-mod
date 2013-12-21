@@ -1,0 +1,354 @@
+From 43847e7905a6215987ad5b0a25388cda878b1b89 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Sat, 21 Dec 2013 15:20:51 -0500
+Subject: [PATCH 13/13] v3b - further attempts to get client to call checksum
+ command, small fix for v2
+
+---
+ CSE40232_README                | 36 ++++++++++++++++++++
+ incr_change/dev_notebook.txt   | 68 +++++++++++++++++++++++++++++++++++++
+ incr_change/task_list.txt      |  3 +-
+ src/engine/FileZillaEngine.cpp |  6 ++++
+ src/interface/QueueView.cpp    | 76 +++++++++++++++++++++++++++++++++++++++---
+ src/interface/QueueView.h      |  3 +-
+ src/interface/menu_bar.cpp     |  2 +-
+ tinyftp/defines.h              |  1 +
+ tinyftp/fileutils.c            | 18 +++++++---
+ 9 files changed, 201 insertions(+), 12 deletions(-)
+ create mode 100644 CSE40232_README
+
+diff --git a/CSE40232_README b/CSE40232_README
+new file mode 100644
+index 0000000..0dead16
+--- /dev/null
++++ b/CSE40232_README
+@@ -0,0 +1,36 @@
++Compiling Tinyftp:
++
++cd trunk/tinyftp
++make
++
++Running Tinyftp:
++cd trunk/tinyftp
++./tinyftp -s 127.0.0.1 -p 9909 -c .
++
++Compiling FileZilla:
++
++cd trunk/
++
++(IF COMPILE EXISTS)
++cd compile
++make distclean
++
++(ELSE)
++mkdir compile
++cd compile
++
++../configure
++make
++make install (NOTE: requires root)
++
++Running FileZilla:
++(IF ABLE TO make install)
++filezilla
++
++(ELSE)
++cd compile/src/interface
++./filezilla
++
++(NOTE: in this case, be sure that the menus.xrc file in 
++/usr/local/shared/filezilla/resources matches the one in 
++trunk/src/interface/resources)
+\ No newline at end of file
+diff --git a/incr_change/dev_notebook.txt b/incr_change/dev_notebook.txt
+index a2b9144..ce9bdf2 100644
+--- a/incr_change/dev_notebook.txt
++++ b/incr_change/dev_notebook.txt
+@@ -277,3 +277,71 @@ place available.
+ Performed a similar set of steps for sftpcontrolsocket
+ 
+ Then fixed a couple of small issues that were preventing a successful compilation
++
++Should see how PWD displays the path in the command area - we can just display a dummy result
++from the checksum command for now
++
++sends it in a response 257?
++
++Not having too much luck seeing how it prints the response... looking at what tinyftp sends
++now
++
++tinyftp uses sprintf to add current directory to a previously-defined string
++len = sprintf(reply,REPL_257_PWD,current_dir);
++then just sends the reply
++
++So I defined a response string for the checksum (257_REPL_ZCHK), and I modified the
++write_checksum function to create a string that uses the filename and a (fake) checksum
++so that the server will send SOMETHING back
++
++I believe that finishes v3a!
++
++12/21/2013
++
++STARTING v3b
++
++Need to find where the file transfer command is issued, and then add code to issue the
++checksum command right after it
++
++Looking in the GUI code (src/interface)
++
++No success with just grep, so ran filezilla in gdb, set breakpoint on the FileTransfer
++function from ftpcontrolsocket, initiated a file transfer with drag and drop. that caused
++the program to hit the breakpoint, so then I ran a backtrace to see what functions were called
++
++Found a promising spot in QueueView.cpp (line 1495) where it goes if the transfer command is
++successful, so I added an if statement in there to also send the checksum command if the checksum
++option is enabled - this actually works for both uploads and downloads, so v3b and v3c can be
++combined to one
++
++Needed to add checksum as a possible state for the engine
++
++After a little debugging, it seems like the reply to a file transfer is always that it will
++block... I tried adding the state-changing-to-checksum when you get that response, too
++
++Very good thing: the OPTION_USE_CHECKSUM toggles appropriately with the button, and we can
++access that result anywhere in the code!
++
++It gets to the point where it changes the state! Now to check if it actually calls the command
++
++gdb confirms that it does call the command, but the result that is returned is 258, which
++does not match a known FZ_CONSTANT.
++
++Needed to add case for the checksum command in FileZillaEngine.cpp's Command function, at
++least. But that wasn't all.
++
++having trouble finding program location just with gdb, possibly because of the threading?
++so I resorted to using print statements
++
++After messing around with gdb some more, the program DOES go to FileZillaEngine.cpp's Command
++function, and the command that it passes in SHOULD be correct, since I was able to use the
++debugger to print the ID of the command and it matched cmd_checksum. However, something
++weird is happening in line 32 of that function, and it somehow causing it to return the strange
++value of 258. I have been unable to fix this problem.
++
++Also, running into a few issues with the checkmark starting off in potentially wrong? The value
++of the option remains constant between opening/closing it, but the checkmark is flipped if you
++close it with the option checked. The issue was small and silly: I was using the value of
++OPTION_SHOW_HIDDEN_FILES to determine the checkmark for the option, not OPTION_USE_CHECKSUM
++
++I manually tested that a few times, and it is good to go now.
+diff --git a/incr_change/task_list.txt b/incr_change/task_list.txt
+index 5dedb1c..63615e0 100644
+--- a/incr_change/task_list.txt
++++ b/incr_change/task_list.txt
+@@ -2,8 +2,7 @@ v1 - add a command on the server to return checksum of a file
+ v2 - add UI element on client for toggling checksum feature
+ v3 - UI toggle causes client to issue checksum command to server
+    v3a - implement command on FileZilla
+-   v3b - called on download
+-   v3c - called on upload
++   v3b - called on file transfer
+ v4 - client compares checksum returned by server to local checksum (always true)
+    v4a - download
+    v4b - upload
+diff --git a/src/engine/FileZillaEngine.cpp b/src/engine/FileZillaEngine.cpp
+index 6fd1e26..a4987ed 100644
+--- a/src/engine/FileZillaEngine.cpp
++++ b/src/engine/FileZillaEngine.cpp
+@@ -35,6 +35,8 @@ int CFileZillaEngine::Command(const CCommand &command)
+ 	m_bIsInCommand = true;
+ 
+ 	int res = FZ_REPLY_INTERNALERROR;
++
++	printf("command id: %d\n", command.GetId());
+ 	switch (command.GetId())
+ 	{
+ 	case cmd_connect:
+@@ -70,6 +72,10 @@ int CFileZillaEngine::Command(const CCommand &command)
+ 	case cmd_chmod:
+ 		res = Chmod(reinterpret_cast<const CChmodCommand&>(command));
+ 		break;
++        case cmd_checksum:
++	        printf("recognized the checksum command\n");
++	        res = Checksum(reinterpret_cast<const CChecksumCommand&>(command));
++	        break;
+ 	default:
+ 		return FZ_REPLY_SYNTAXERROR;
+ 	}
+diff --git a/src/interface/QueueView.cpp b/src/interface/QueueView.cpp
+index efe73b2..9b932b6 100644
+--- a/src/interface/QueueView.cpp
++++ b/src/interface/QueueView.cpp
+@@ -1477,8 +1477,19 @@ void CQueueView::SendNextCommand(t_EngineData& engineData)
+ 			int res = engineData.pEngine->Command(CFileTransferCommand(fileItem->GetLocalPath().GetPath() + fileItem->GetLocalFile(), fileItem->GetRemotePath(),
+ 												fileItem->GetRemoteFile(), fileItem->Download(), fileItem->m_transferSettings));
+ 			wxASSERT((res & FZ_REPLY_BUSY) != FZ_REPLY_BUSY);
+-			if (res == FZ_REPLY_WOULDBLOCK)
++
++			printf("res: %d\n", res);
++			if (res == FZ_REPLY_WOULDBLOCK) {
++			        //after a "successful" transfer, set the checksum command
++				//to be the next state of the engine, IF the option was enabled
++				printf("potentially changing state to checksum\n");
++				if(COptions::Get()->GetOptionVal(OPTION_USE_CHECKSUM)) {
++				  printf("changing state to checksum!\n");
++				  engineData.state = t_EngineData::checksum;
++				  continue;
++				}
+ 				return;
++			}
+ 
+ 			if (res == FZ_REPLY_NOTCONNECTED)
+ 			{
+@@ -1495,14 +1506,71 @@ void CQueueView::SendNextCommand(t_EngineData& engineData)
+ 			if (res == FZ_REPLY_OK)
+ 			{
+ 				ResetEngine(engineData, success);
+-				return;
+-			}
+ 
++				//after a "successful" transfer, set the checksum command
++				//to be the next state of the engine, IF the option was enabled
++				printf("potentially changing state to checksum\n");
++				if(COptions::Get()->GetOptionVal(OPTION_USE_CHECKSUM)) {
++				  printf("changing state to checksum!\n");
++				  engineData.state = t_EngineData::checksum;
++				  continue;
++				}
++			}
+ 			if (!IncreaseErrorCount(engineData))
+-				return;
++			  return;
+ 			continue;
+ 		}
+ 
++		if (engineData.state == t_EngineData::checksum)
++		{
++		  
++                        CFileItem* fileItem = engineData.pItem;
++
++			fileItem->m_statusMessage = _("Verifying Checksum");
++			RefreshItem(engineData.pItem);
++
++			//int res = engineData.pEngine->Command(CChecksumCommand(fileItem->GetLocalPath().GetPath() + fileItem->GetLocalFile(), fileItem->GetRemotePath(), fileItem->GetRemoteFile()));
++			
++			//splitting the above into multiple lines for debugging purposes
++			int res;
++			wxString localfile = fileItem->GetLocalPath().GetPath() + fileItem->GetLocalFile();
++			CServerPath remotepath = fileItem->GetRemotePath();
++			wxString remotefile = fileItem->GetRemoteFile();
++
++			CChecksumCommand cmd = CChecksumCommand(localfile, remotepath, remotefile);
++
++			res = engineData.pEngine->Command(cmd);
++
++			//perform similar checks on the result
++			wxASSERT((res & FZ_REPLY_BUSY) != FZ_REPLY_BUSY);
++			
++			//executing command would block the thread, so it wait to execute it
++			if (res == FZ_REPLY_WOULDBLOCK)
++			  return;
++			
++			//no longer connected to the server, so tries to reconnect
++			if( res == FZ_REPLY_NOTCONNECTED)
++			  {
++			    if (engineData.transient)
++			      {
++				ResetEngine(engineData, retry);
++				return;
++			      }
++			    
++			    engineData.state = t_EngineData::connect;
++			    continue;
++			  }
++			if( res == FZ_REPLY_OK)
++			  {
++			    ResetEngine(engineData, success);
++			    return;
++			  }
++			
++			if(!IncreaseErrorCount(engineData))
++			  return;
++			
++		}
++		
+ 		if (engineData.state == t_EngineData::mkdir)
+ 		{
+ 			CFileItem* fileItem = engineData.pItem;
+diff --git a/src/interface/QueueView.h b/src/interface/QueueView.h
+index ff44475..abc5b08 100644
+--- a/src/interface/QueueView.h
++++ b/src/interface/QueueView.h
+@@ -93,7 +93,8 @@ struct t_EngineData
+ 		list,
+ 		mkdir,
+ 		askpassword,
+-		waitprimary
++		waitprimary,
++		checksum
+ 	} state;
+ 
+ 	CFileItem* pItem;
+diff --git a/src/interface/menu_bar.cpp b/src/interface/menu_bar.cpp
+index cbd1d88..2a4f1ae 100644
+--- a/src/interface/menu_bar.cpp
++++ b/src/interface/menu_bar.cpp
+@@ -78,7 +78,7 @@ CMenuBar* CMenuBar::Load(CMainFrame* pMainFrame)
+ 
+ 	//initialize the check on the checksum menuitem to whatever the current
+ 	//value of its option is
+-	menubar->Check(XRCID("ID_MENU_SERVER_CHECKSUM"), COptions::Get()->GetOptionVal(OPTION_VIEW_HIDDEN_FILES) ? true : false);
++	menubar->Check(XRCID("ID_MENU_SERVER_CHECKSUM"), COptions::Get()->GetOptionVal(OPTION_USE_CHECKSUM) ? true : false);
+ 
+ 	int mode = COptions::Get()->GetOptionVal(OPTION_COMPARISONMODE);
+ 	if (mode != 1)
+diff --git a/tinyftp/defines.h b/tinyftp/defines.h
+index a5ad60a..763557e 100644
+--- a/tinyftp/defines.h
++++ b/tinyftp/defines.h
+@@ -85,6 +85,7 @@ extern "C"
+ 	#define REPL_250 "250 Requested file action okay, completed.\r\n"
+ 	#define REPL_257 "257 %s created.\r\n"
+ 	#define REPL_257_PWD "257 \"%s\" is current working dir.\r\n"
++        #define REPL_257_ZCHK "257 File %s has checksum \"%s\".\r\n"
+ 	#define REPL_331 "331 Only anonymous user is accepted.\r\n"
+ 	#define REPL_331_ANON "331 Anonymous login okay, send your complete email as your password.\r\n"
+ 	#define REPL_332 "332 Need account for login.\r\n"
+diff --git a/tinyftp/fileutils.c b/tinyftp/fileutils.c
+index 1184e92..30dc0b7 100644
+--- a/tinyftp/fileutils.c
++++ b/tinyftp/fileutils.c
+@@ -581,9 +581,19 @@ bool write_chksum(int sock, int client_sock, const char * filename) {
+ 		return FALSE;
+ 	}
+ 
+-	//check if directory exists?
+-	//check if file exists?
+-	printf("Calling ZCHK\n");
++	//before actually trying to compute the checksum, should ensure that:
++	//the directory exists
++	//the file exists
++
++	//creating line to send as a response
++	char line[300];
++
++	line[0] = '\0';
++	int len;
++	//create reply with filename and checksum
++	len = sprintf(line, REPL_257_ZCHK, filename, 'FAKE_CHECKSUM');
++	line[len] = '\0';
++	send_repl(sock, line);
+ 
+ 	//close the connection
+         if(sock!=client_sock) {
+@@ -591,7 +601,7 @@ bool write_chksum(int sock, int client_sock, const char * filename) {
+ 		send_repl(sock,REPL_226);
+ 	}
+ 
+-	//closedir?
++	//close the directory?
+ 
+ 	return TRUE;
+ }
+-- 
+1.8.4.rc3
+

@@ -1,0 +1,24 @@
+From 7a60c0e177775dae32d1b512a43d0346ab8fdf34 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Sat, 21 Dec 2013 11:42:06 -0500
+Subject: [PATCH 12/13] added writeup observations about the project
+
+---
+ incr_change/writeup.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 incr_change/writeup.txt
+
+diff --git a/incr_change/writeup.txt b/incr_change/writeup.txt
+new file mode 100644
+index 0000000..bfed41d
+--- /dev/null
++++ b/incr_change/writeup.txt
+@@ -0,0 +1,5 @@
++The FileZilla project is very well organized; variables are named appropriately, the coding style is consistent, and functionality is broken up into appropriate files stored in appropriate directories. However, the documentation is severely lacking across the whole project. There are isolated instances of comments, but other than that, new programmers only have the variable names to help them with program comprehension. FileZilla’s website offers little in terms of source code documentation, and the development section of the forum mostly consists of users asking for new features.
++
++Given the size of the project, documentation is something that would have been easiest to create as the code was being written in the first place. However, after the fact, it would at least be useful to add a comment to each function to indicate its purpose and any preconditions or postconditions. Traditionally, this should be done by a team of experienced developers who, combined, have a comprehensive knowledge of the codebase. However, if automated documentation technology becomes viable for large scale projects, running that on the source code would clearly be preferable.
++
++There was one notable design issue that I encountered: the definition of the FTP commands in FileZilla relied on the specifics of enum implementation to use the final element’s value as a count of the total number of commands. This value was then used in another array, where the entries were supposed to be listed in the same order as the command definitions in the enum. To add another wrinkle, there were actually TWO enums used, and the first entry of the second enum was set to the value of the last entry of the first enum, in order to make the enums “chain” together so that the final entry of the second enum would have a value equal to the total number of entries in both enums. This design works, but it is not obvious to a new user, especially since the enum and the array are stored in separate files and the only comment is a short command to make sure that the final entry of the second enum is the last entry. Not noticing this connection can lead to confusing errors if a new developer is trying to add a new command, as I experienced.
+-- 
+1.8.4.rc3
+

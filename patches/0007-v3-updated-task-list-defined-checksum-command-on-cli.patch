@@ -1,0 +1,111 @@
+From d52f5ee969ce17a46cf46a948448150b8a455aab Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Fri, 20 Dec 2013 17:43:43 -0500
+Subject: [PATCH 07/13] v3 - updated task list, defined checksum command on
+ client
+
+---
+ incr_change/dev_notebook.txt | 10 ++++++++++
+ incr_change/task_list.txt    |  5 +++--
+ src/engine/commands.cpp      | 20 ++++++++++++++++++++
+ src/include/commands.h       | 17 ++++++++++++++++-
+ 4 files changed, 49 insertions(+), 3 deletions(-)
+
+diff --git a/incr_change/dev_notebook.txt b/incr_change/dev_notebook.txt
+index 98cf8dd..b39e9c8 100644
+--- a/incr_change/dev_notebook.txt
++++ b/incr_change/dev_notebook.txt
+@@ -193,3 +193,13 @@ Added a small snippet of code to src/interface/menu_bar.cpp to make sure that th
+ menu item starts checked if the default of the option was set to true, unchecked otherwise
+ 
+ That ends v2!
++
++12/20/2013
++
++Broke v3 down in another subtask: first, we need to get the checksum command "implemented"
++on FileZilla (not the functionality of it, just being able to call it)
++
++Commands are defined in /src/include/commands.h and implemented in src/engine/commands.cpp
++
++Adding the appropriate interface and implementation code for this new command "object" was
++straightforward enough
+diff --git a/incr_change/task_list.txt b/incr_change/task_list.txt
+index 625a451..5dedb1c 100644
+--- a/incr_change/task_list.txt
++++ b/incr_change/task_list.txt
+@@ -1,8 +1,9 @@
+ v1 - add a command on the server to return checksum of a file
+ v2 - add UI element on client for toggling checksum feature
+ v3 - UI toggle causes client to issue checksum command to server
+-   v3a - download
+-   v3b - upload
++   v3a - implement command on FileZilla
++   v3b - called on download
++   v3c - called on upload
+ v4 - client compares checksum returned by server to local checksum (always true)
+    v4a - download
+    v4b - upload
+diff --git a/src/engine/commands.cpp b/src/engine/commands.cpp
+index 2701058..cecad4d 100644
+--- a/src/engine/commands.cpp
++++ b/src/engine/commands.cpp
+@@ -100,3 +100,23 @@ CChmodCommand::CChmodCommand(const CServerPath& path, const wxString& file, cons
+ 	m_file = file;
+ 	m_permission = permission;
+ }
++
++//constructor for Checksum command
++CChecksumCommand::CChecksumCommand(const wxString& localFile, const CServerPath& remotePath, const wxString& remoteFile) {
++        m_localFile = localFile;
++        m_remotePath = remotePath;
++        m_remoteFile = remoteFile;
++}
++
++//standard accessor functions for the checksum command
++wxString CChecksumCommand::GetLocalFile() const {
++        return m_localFile;
++}
++
++CServerPath CChecksumCommand::GetRemotePath() const {
++        return m_remotePath;
++}
++
++wxString CChecksumCommand::GetRemoteFile() const {
++        return m_remoteFile;
++}
+diff --git a/src/include/commands.h b/src/include/commands.h
+index c4a3e25..f10bab2 100644
+--- a/src/include/commands.h
++++ b/src/include/commands.h
+@@ -19,7 +19,7 @@ enum Command
+ 	cmd_rename,
+ 	cmd_chmod,
+ 	cmd_raw,
+-
++	cmd_checksum,
+ 	// Only used internally
+ 	cmd_cwd,
+ 	cmd_rawtransfer
+@@ -231,4 +231,19 @@ protected:
+ 	wxString m_permission;
+ };
+ 
++//interface for the checksum command within FileZilla
++DECLARE_COMMAND(CChecksumCommand, cmd_checksum)
++
++         CChecksumCommand(const wxString& localFile, const CServerPath& remotePath, const wxString& remoteFile);
++
++         wxString GetLocalFile() const;
++         CServerPath GetRemotePath() const;
++         wxString GetRemoteFile() const;
++
++protected:
++         wxString m_localFile;
++         CServerPath m_remotePath;
++         wxString m_remoteFile;
++};
++
+ #endif
+-- 
+1.8.4.rc3
+

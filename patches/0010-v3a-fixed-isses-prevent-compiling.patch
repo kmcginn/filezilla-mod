@@ -1,0 +1,62 @@
+From a7295aa1d627b5e7a1158c3827e8b6425287e292 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Sat, 21 Dec 2013 05:34:01 -0500
+Subject: [PATCH 10/13] v3a - fixed isses prevent compiling
+
+---
+ src/engine/ControlSocket.cpp     | 2 +-
+ src/engine/sftpcontrolsocket.cpp | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/engine/ControlSocket.cpp b/src/engine/ControlSocket.cpp
+index c5f5793..69b9521 100644
+--- a/src/engine/ControlSocket.cpp
++++ b/src/engine/ControlSocket.cpp
+@@ -1489,7 +1489,7 @@ int CControlSocket::Chmod(const CChmodCommand&)
+ 
+ //base implementation of virtual function - if it reaches here,
+ //the command is not implemented in the ftp or sftp versions
+-int CControlSOcket::Checksum(const CChecksumCommand&)
++int CControlSocket::Checksum(const CChecksumCommand&)
+ {
+   return FZ_REPLY_NOTSUPPORTED;
+ }
+diff --git a/src/engine/sftpcontrolsocket.cpp b/src/engine/sftpcontrolsocket.cpp
+index 19e9f4b..3ebf203 100644
+--- a/src/engine/sftpcontrolsocket.cpp
++++ b/src/engine/sftpcontrolsocket.cpp
+@@ -1543,7 +1543,7 @@ int CSftpControlSocket::ProcessReply(bool successful, const wxString& reply /*=_
+ 	case cmd_rename:
+ 		return RenameParseResponse(successful, reply);
+ 	case cmd_checksum:
+-	        return ChecksumResponse(successful, reply);
++	        return ChecksumParseResponse(successful, reply);
+ 	default:
+ 		LogMessage(Debug_Warning, _T("No action for parsing replies to command %d"), (int)commandId);
+ 		return ResetOperation(FZ_REPLY_INTERNALERROR);
+@@ -2562,11 +2562,11 @@ int CSftpControlSocket::Checksum(const CChecksumCommand& command)
+ 	LogMessage(Status, _("Compute checksum of '%s'"), command.GetRemotePath().FormatFilename(command.GetRemoteFile()).c_str());
+ 
+ 	CSftpChecksumOpData *pData = new CSftpChecksumOpData(command);
+-	pData->opState = chmecksum_checksum;
++	pData->opState = checksum_checksum;
+ 	m_pCurOpData = pData;
+ 
+ 	//change to the directory where the change is located
+-	int res = ChangeDir(command.GetPath());
++	int res = ChangeDir(command.GetRemotePath());
+ 	if (res != FZ_REPLY_OK)
+ 		return res;
+ 
+@@ -2597,7 +2597,7 @@ int CSftpControlSocket::ChecksumParseResponse(bool successful, const wxString& r
+   
+ }
+ 
+-int CSftpControlSocket::ChecksumSend(bool successful, const wxString& reply)
++int CSftpControlSocket::ChecksumSend()
+ {
+ 
+         LogMessage(Debug_Verbose, _T("CSftpControlSocket::ChecksumSend()"));
+-- 
+1.8.4.rc3
+

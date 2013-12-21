@@ -1,0 +1,23 @@
+From 1c6e162a3b34622271a2ddc6017546edff5dfc73 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Mon, 16 Dec 2013 22:55:53 -0500
+Subject: [PATCH 02/13] small change to compiling step documentation
+
+---
+ incr_change/filezilla_compiling.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/incr_change/filezilla_compiling.txt b/incr_change/filezilla_compiling.txt
+index 973bb1c..4f8adcc 100644
+--- a/incr_change/filezilla_compiling.txt
++++ b/incr_change/filezilla_compiling.txt
+@@ -31,4 +31,4 @@ Do anything else it tells you to do, I forget if I needed anything else from it
+ 
+ ./configure (if it gives you errors, try to deal with them)
+ make
+-make install (maybe not needed?)
+\ No newline at end of file
++filezilla can then be run at /compile/src/interface/filezilla
+-- 
+1.8.4.rc3
+

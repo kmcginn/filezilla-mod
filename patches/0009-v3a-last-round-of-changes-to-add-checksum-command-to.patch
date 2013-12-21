@@ -1,0 +1,449 @@
+From f5276e54dd2f8f55cb195c14a589b8a68243a291 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Sat, 21 Dec 2013 04:58:07 -0500
+Subject: [PATCH 09/13] v3a - last round of changes to add checksum command to
+ client
+
+---
+ incr_change/dev_notebook.txt     |  31 +++++++++-
+ src/engine/ControlSocket.cpp     |   9 ++-
+ src/engine/ControlSocket.h       |   1 +
+ src/engine/engineprivate.cpp     |  18 +++++-
+ src/engine/ftpcontrolsocket.cpp  | 120 +++++++++++++++++++++++++++++++++++++++
+ src/engine/ftpcontrolsocket.h    |   5 ++
+ src/engine/sftpcontrolsocket.cpp | 116 +++++++++++++++++++++++++++++++++++++
+ src/engine/sftpcontrolsocket.h   |   4 ++
+ 8 files changed, 300 insertions(+), 4 deletions(-)
+
+diff --git a/incr_change/dev_notebook.txt b/incr_change/dev_notebook.txt
+index f966b2f..1d1ce8c 100644
+--- a/incr_change/dev_notebook.txt
++++ b/incr_change/dev_notebook.txt
+@@ -238,7 +238,10 @@ include/engineprivate.h has a bunch of command handlers inside it, so I defined
+ checksum command - these are called by CFileZillaEngine::Command, so that might also be a
+ good thing to look at
+ 
+-implement it in engine/engineprivate.cpp
++implemented it in engine/engineprivate.cpp - return different error responses based on the
++lack of connection, busy-ness, or not all data fields filled out
++
++then, based on pattern of other commands, calls instance that is related to the ControlSocket
+ 
+ looks like there are virtual instances of these handlers in a bunch of places:
+ engine/ftpcontrolsocket.h
+@@ -246,3 +249,29 @@ engine/ControlSocket.h
+ engine/sftpcontrolsocket.h
+ 
+ Also handlers for sending, parsing the response, and parsing the subcommand result.
++
++So time to implement all of those!
++
++Started with ControlSocket - this seems to be the base class for ftpcontrolsocket and
++sftpcontrolsocket, so it is where the virtual function for the command is first defined,
++and where the "fallback" is implemented that just basically says the command is not
++supported because it is not implemented in the ftp or sftp specific control sockets
++
++Stumbled upon a switch statement in ftpcontrolsocket's implementation that chooses
++the response function to call based on the id of the command. Added an entry in
++there for the checksum command!
++
++Same with SendNextCommand
++
++Looking at how each command is implemented, they all seem to need a special little
++data class to hold their important pieces of information. The implementations are also
++decently complex - although they mostly seem to be things that check the input to the
++command for accuracy, so maybe I don't need to implement too much in there yet
++
++Implemented the ChecksumSend, ChecksumParseResults, and Checksum functions for ftpcontrolsocket
++(I am assuming that we do not need the ChecksumSubcommandResult function, since that seems
++to be called whenever the function was called by another function - this might be a decent place
++to put the function (ie at the end of the FileTransfer command, but I think there should be another
++place available.
++
++Performed a similar set of steps for sftpcontrolsocket
+diff --git a/src/engine/ControlSocket.cpp b/src/engine/ControlSocket.cpp
+index 6407558..c5f5793 100644
+--- a/src/engine/ControlSocket.cpp
++++ b/src/engine/ControlSocket.cpp
+@@ -1485,4 +1485,11 @@ int CControlSocket::Rename(const CRenameCommand&)
+ int CControlSocket::Chmod(const CChmodCommand&)
+ {
+ 	return FZ_REPLY_NOTSUPPORTED;
+-}
+\ No newline at end of file
++}
++
++//base implementation of virtual function - if it reaches here,
++//the command is not implemented in the ftp or sftp versions
++int CControlSOcket::Checksum(const CChecksumCommand&)
++{
++  return FZ_REPLY_NOTSUPPORTED;
++}
+diff --git a/src/engine/ControlSocket.h b/src/engine/ControlSocket.h
+index 7e486d4..772c57b 100644
+--- a/src/engine/ControlSocket.h
++++ b/src/engine/ControlSocket.h
+@@ -131,6 +131,7 @@ public:
+ 	virtual int Mkdir(const CServerPath& path);
+ 	virtual int Rename(const CRenameCommand& command);
+ 	virtual int Chmod(const CChmodCommand& command);
++	virtual int Checksum(const CChecksumCommand& command);
+ 	virtual bool Connected() = 0;
+ 
+ 	// If m_pCurrentOpData is zero, this function returns the current command
+diff --git a/src/engine/engineprivate.cpp b/src/engine/engineprivate.cpp
+index 77548ae..0073cb0 100644
+--- a/src/engine/engineprivate.cpp
++++ b/src/engine/engineprivate.cpp
+@@ -499,8 +499,22 @@ int CFileZillaEnginePrivate::Chmod(const CChmodCommand& command)
+ 
+ int CFileZillaEnginePrivate::Checksum(const CChecksumCommand& command)
+ {
+-
+-  //IMPLEMENTATION DETAILS
++  //unable to call command if not connected to a server
++  if (!IsConnected())
++    return FZ_REPLY_NOTCONNECTED;
++
++  //unable to call command if busy
++  if (IsBusy())
++    return FZ_REPLY_BUSY;
++
++  //unable to call command if proper fields are not filled
++  if (command.GetLocalFile().IsEmpty() || command.GetRemotePath().IsEmpty() ||
++      command.GetRemoteFile().IsEmpty())
++    return FZ_REPLY_SYNTAXERROR;
++
++  m_pCurrentCommand = command.Clone();
++  //TODO: add correct options for ControlSocket version of Checksum here?
++  return m_pControlSocket->Checksum(command);
+ 
+ }
+ 
+diff --git a/src/engine/ftpcontrolsocket.cpp b/src/engine/ftpcontrolsocket.cpp
+index cdc7581..30768de 100644
+--- a/src/engine/ftpcontrolsocket.cpp
++++ b/src/engine/ftpcontrolsocket.cpp
+@@ -492,6 +492,9 @@ void CFtpControlSocket::ParseResponse()
+ 	case cmd_rawtransfer:
+ 		TransferParseResponse();
+ 		break;
++	case cmd_checksum:
++	        ChecksumParseResponse();
++	        break;
+ 	case cmd_none:
+ 		LogMessage(Debug_Verbose, _T("Out-of-order reply, ignoring."));
+ 		break;
+@@ -1897,6 +1900,8 @@ int CFtpControlSocket::SendNextCommand()
+ 		return DeleteSend();
+ 	case cmd_removedir:
+ 		return RemoveDirSend();
++	case cmd_checksum:
++	        return ChecksumSend();
+ 	default:
+ 		LogMessage(__TFILE__, __LINE__, this, ::Debug_Warning, _T("Unknown opID (%d) in SendNextCommand"), m_pCurOpData->opId);
+ 		ResetOperation(FZ_REPLY_INTERNALERROR);
+@@ -3799,6 +3804,121 @@ int CFtpControlSocket::ChmodSend()
+ 	return FZ_REPLY_WOULDBLOCK;
+ }
+ 
++class CFtpChecksumOpData : public COpData
++{
++public:
++	CFtpChecksumOpData(const CChecksumCommand& command)
++		: COpData(cmd_checksum), m_cmd(command)
++	{
++		m_useAbsolute = false;
++	}
++
++	virtual ~CFtpChecksumOpData() {}
++
++	CChecksumCommand m_cmd;
++	bool m_useAbsolute;
++};
++
++enum checksumStates
++{
++	checksum_init = 0,
++	checksum_checksum
++};
++
++
++int CFtpControlSocket::Checksum(const CChecksumCommand& command)
++{
++
++        //check to see if there is already data for this operation
++        if (m_pCurOpData)
++	{
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData not empty"));
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++	
++	//write log message about command
++	LogMessage(Status, _("Requesting checksum of '%s'"), command.GetRemotePath().FormatFilename(command.GetRemoteFile()).c_str());
++
++	//set the op data for this command
++	CFtpChecksumOpData *pData = new CFtpChecksumOpData(command);
++	pData->opState = checksum_checksum;
++	m_pCurOpData = pData;
++
++	//change remote directory to the path of the target file
++	int res = ChangeDir(command.GetRemotePath());
++	if (res != FZ_REPLY_OK)
++		return res;
++
++        return SendNextCommand();
++}
++
++int CFtpControlSocket::ChecksumParseResponse()
++{
++
++        //ensure op data exists
++        CFtpChecksumOpData *pData = static_cast<CFtpChecksumOpData*>(m_pCurOpData);
++	if (!pData)
++	{
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	int code = GetReplyCode();
++	if (code != 2 && code != 3)
++	{
++		ResetOperation(FZ_REPLY_ERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	
++	//TODO: compare checksum here?
++
++	ResetOperation(FZ_REPLY_OK);
++	return FZ_REPLY_OK;
++
++
++}
++
++
++int CFtpControlSocket::ChecksumSend()
++{
++
++        LogMessage(Debug_Verbose, _T("CFtpControlSocket::ChecksumSend()"));
++
++	//check existence of op data
++	CFtpChecksumOpData *pData = static_cast<CFtpChecksumOpData*>(m_pCurOpData);
++	if (!pData)
++	{
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	bool res;
++	switch (pData->opState)
++	{
++	case checksum_checksum:
++	        //send request
++		res = Send(_T("ZCHK ") + pData->m_cmd.GetRemotePath().FormatFilename(pData->m_cmd.GetRemoteFile(), !pData->m_useAbsolute));
++		break;
++	default:
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("unknown op state: %d"), pData->opState);
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	//request did not send properly
++	if (!res)
++	{
++		ResetOperation(FZ_REPLY_ERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	return FZ_REPLY_WOULDBLOCK;
++}
++
+ bool CFtpControlSocket::IsMisleadingListResponse() const
+ {
+ 	// Some servers are broken. Instead of an empty listing, some MVS servers
+diff --git a/src/engine/ftpcontrolsocket.h b/src/engine/ftpcontrolsocket.h
+index 9fbe3c7..40bc88d 100644
+--- a/src/engine/ftpcontrolsocket.h
++++ b/src/engine/ftpcontrolsocket.h
+@@ -76,6 +76,11 @@ protected:
+ 	virtual int ChmodSubcommandResult(int prevResult);
+ 	virtual int ChmodSend();
+ 
++	virtual int Checksum(const CChecksumCommand& command);
++	virtual int ChecksumParseResponse();
++	//virtual int ChecksumSubcommandResult(int prevResult); //not necessary?
++	virtual int ChecksumSend();
++
+ 	virtual int Transfer(const wxString& cmd, CFtpTransferOpData* oldData);
+ 	virtual int TransferParseResponse();
+ 	virtual int TransferSend();
+diff --git a/src/engine/sftpcontrolsocket.cpp b/src/engine/sftpcontrolsocket.cpp
+index 29db36e..19e9f4b 100644
+--- a/src/engine/sftpcontrolsocket.cpp
++++ b/src/engine/sftpcontrolsocket.cpp
+@@ -1542,6 +1542,8 @@ int CSftpControlSocket::ProcessReply(bool successful, const wxString& reply /*=_
+ 		return ChmodParseResponse(successful, reply);
+ 	case cmd_rename:
+ 		return RenameParseResponse(successful, reply);
++	case cmd_checksum:
++	        return ChecksumResponse(successful, reply);
+ 	default:
+ 		LogMessage(Debug_Warning, _T("No action for parsing replies to command %d"), (int)commandId);
+ 		return ResetOperation(FZ_REPLY_INTERNALERROR);
+@@ -1604,6 +1606,8 @@ int CSftpControlSocket::SendNextCommand()
+ 		return ChmodSend();
+ 	case cmd_delete:
+ 		return DeleteSend();
++	case cmd_checksum:
++	        return ChecksumSend();
+ 	default:
+ 		LogMessage(::Debug_Warning, __TFILE__, __LINE__, _T("Unknown opID (%d) in SendNextCommand"), m_pCurOpData->opId);
+ 		ResetOperation(FZ_REPLY_INTERNALERROR);
+@@ -2525,6 +2529,118 @@ int CSftpControlSocket::ChmodSend()
+ 	return FZ_REPLY_WOULDBLOCK;
+ }
+ 
++class CSftpChecksumOpData : public COpData
++{
++public:
++	CSftpChecksumOpData(const CChecksumCommand& command)
++		: COpData(cmd_checksum), m_cmd(command)
++	{
++		m_useAbsolute = false;
++	}
++
++	virtual ~CSftpChecksumOpData() {}
++
++	CChecksumCommand m_cmd;
++	bool m_useAbsolute;
++};
++
++enum checksumStates
++{
++	checksum_init = 0,
++	checksum_checksum
++};
++
++int CSftpControlSocket::Checksum(const CChecksumCommand& command)
++{
++	if (m_pCurOpData)
++	{
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData not empty"));
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	LogMessage(Status, _("Compute checksum of '%s'"), command.GetRemotePath().FormatFilename(command.GetRemoteFile()).c_str());
++
++	CSftpChecksumOpData *pData = new CSftpChecksumOpData(command);
++	pData->opState = chmecksum_checksum;
++	m_pCurOpData = pData;
++
++	//change to the directory where the change is located
++	int res = ChangeDir(command.GetPath());
++	if (res != FZ_REPLY_OK)
++		return res;
++
++	return SendNextCommand();
++
++}
++
++int CSftpControlSocket::ChecksumParseResponse(bool successful, const wxString& reply)
++{
++	CSftpChecksumOpData *pData = static_cast<CSftpChecksumOpData*>(m_pCurOpData);
++
++	//check if op data does not exist
++	if (!pData)
++	{
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	if (!successful)
++	{
++		ResetOperation(FZ_REPLY_ERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	ResetOperation(FZ_REPLY_OK);
++	return FZ_REPLY_OK;
++  
++}
++
++int CSftpControlSocket::ChecksumSend(bool successful, const wxString& reply)
++{
++
++        LogMessage(Debug_Verbose, _T("CSftpControlSocket::ChecksumSend()"));
++
++	CSftpChecksumOpData *pData = static_cast<CSftpChecksumOpData*>(m_pCurOpData);
++
++	//check if op data does not exist
++	if (!pData)
++	{
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	bool res;
++	switch (pData->opState)
++	{
++	case checksum_checksum:
++		{
++			wxString quotedFilename = QuoteFilename(pData->m_cmd.GetRemotePath().FormatFilename(pData->m_cmd.GetRemoteFile(), !pData->m_useAbsolute));
++
++			res = Send(_T("zchk ") + WildcardEscape(quotedFilename),
++					   _T("zchk ") + quotedFilename);
++		}
++		break;
++	default:
++		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("unknown op state: %d"), pData->opState);
++		ResetOperation(FZ_REPLY_INTERNALERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++
++	//message does not send properly
++	if (!res)
++	{
++		ResetOperation(FZ_REPLY_ERROR);
++		return FZ_REPLY_ERROR;
++	}
++
++	return FZ_REPLY_WOULDBLOCK;
++
++}
++
+ class CSftpRenameOpData : public COpData
+ {
+ public:
+diff --git a/src/engine/sftpcontrolsocket.h b/src/engine/sftpcontrolsocket.h
+index 75829c3..d20368f 100644
+--- a/src/engine/sftpcontrolsocket.h
++++ b/src/engine/sftpcontrolsocket.h
+@@ -55,6 +55,7 @@ public:
+ 	virtual int Mkdir(const CServerPath& path);
+ 	virtual int Rename(const CRenameCommand& command);
+ 	virtual int Chmod(const CChmodCommand& command);
++	virtual int Checksum(const CChecksumCommand& command);
+ 	virtual void Cancel();
+ 
+ 	virtual bool Connected() { return m_pInputThread != 0; }
+@@ -109,6 +110,9 @@ protected:
+ 	int ChmodSubcommandResult(int prevResult);
+ 	int ChmodSend();
+ 
++	int ChecksumParseResponse(bool successful, const wxString& reply);
++	int ChecksumSend();
++
+ 	int RenameParseResponse(bool successful, const wxString& reply);
+ 	int RenameSubcommandResult(int prevResult);
+ 	int RenameSend();
+-- 
+1.8.4.rc3
+

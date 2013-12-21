@@ -1,0 +1,96 @@
+From 0bad853f56f51c50520af4e03e71ce0133798c1c Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Sat, 21 Dec 2013 00:06:04 -0500
+Subject: [PATCH 08/13] v3a - continuing to try to implement checksum command
+ on client
+
+---
+ incr_change/dev_notebook.txt | 43 +++++++++++++++++++++++++++++++++++++++++++
+ src/engine/engineprivate.cpp |  7 +++++++
+ src/include/engineprivate.h  |  1 +
+ 3 files changed, 51 insertions(+)
+
+diff --git a/incr_change/dev_notebook.txt b/incr_change/dev_notebook.txt
+index b39e9c8..f966b2f 100644
+--- a/incr_change/dev_notebook.txt
++++ b/incr_change/dev_notebook.txt
+@@ -203,3 +203,46 @@ Commands are defined in /src/include/commands.h and implemented in src/engine/co
+ 
+ Adding the appropriate interface and implementation code for this new command "object" was
+ straightforward enough
++
++Grepping around looking how the CListCommand is called, found what appears to be the
++"incantation" for calling a command in QueueView.cpp 2766 in function TryRefreshSettings:
++//create an instance of this command with the appropriate variables as parameters
++ CListCommand command(pListing->path, _T(""), LIST_FLAG_AVOID);
++//use the engine's Command function to run the command, store result
++int res = pEngineData->pEngine->Command(command);
++//don't call the command if it would block the engine - this is multithreaded! yaaaaay
++if(res != FZ_REPLY_WOULDBLOCK)
++       continue;
++
++//indicate that this "engine" is active doing a list command
++pEngineData->active = true;
++pEngineData->state = t_EngineData::list;
++
++pEngineData comes from GetEngineData(reinterpret_cast<CFileZillaEngine*>(event.GetEventObject()));
++might not need to do this EXACTLY, but it is a decent starting point for learning how the
++system works.
++
++looked into commandqueue.cpp to see how commands are processed - there is a Finish function
++that handles special cases after the command has finished. If the ZCHK command has the server
++determine if the checksums match, it should return a reply that indicates such and do something
++in this function to prompt the user to retry the transfer. Depending on how the commands from the
++server send data back, this might not be a bad idea; include the checksum computed locally as a
++parameter to the command, and have the server compare it. Right now, though, I think that the
++server should just send the computed checksum for the file it has, and then the client
++should do the comparison. This design is, of course, subject to change.
++
++looking at where the CFileTransferCommand is called, since we will want to call the checksum
++after it (or as a part of it? that might be a valid route if this turns out to be difficult)
++
++include/engineprivate.h has a bunch of command handlers inside it, so I defined one for the
++checksum command - these are called by CFileZillaEngine::Command, so that might also be a
++good thing to look at
++
++implement it in engine/engineprivate.cpp
++
++looks like there are virtual instances of these handlers in a bunch of places:
++engine/ftpcontrolsocket.h
++engine/ControlSocket.h
++engine/sftpcontrolsocket.h
++
++Also handlers for sending, parsing the response, and parsing the subcommand result.
+diff --git a/src/engine/engineprivate.cpp b/src/engine/engineprivate.cpp
+index f0b8f30..77548ae 100644
+--- a/src/engine/engineprivate.cpp
++++ b/src/engine/engineprivate.cpp
+@@ -497,6 +497,13 @@ int CFileZillaEnginePrivate::Chmod(const CChmodCommand& command)
+ 	return m_pControlSocket->Chmod(command);
+ }
+ 
++int CFileZillaEnginePrivate::Checksum(const CChecksumCommand& command)
++{
++
++  //IMPLEMENTATION DETAILS
++
++}
++
+ void CFileZillaEnginePrivate::SendDirectoryListingNotification(const CServerPath& path, bool onList, bool modified, bool failed)
+ {
+ 	wxASSERT(m_pControlSocket);
+diff --git a/src/include/engineprivate.h b/src/include/engineprivate.h
+index b5b613d..1f6011e 100644
+--- a/src/include/engineprivate.h
++++ b/src/include/engineprivate.h
+@@ -64,6 +64,7 @@ protected:
+ 	int Mkdir(const CMkdirCommand& command);
+ 	int Rename(const CRenameCommand& command);
+ 	int Chmod(const CChmodCommand& command);
++	int Checksum(const CChecksumCommand& command);
+ 
+ 	int ContinueConnect();
+ 
+-- 
+1.8.4.rc3
+

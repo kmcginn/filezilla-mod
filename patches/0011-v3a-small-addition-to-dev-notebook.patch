@@ -1,0 +1,22 @@
+From 83e9ccdc7ab78948a9149c8becefae07aeb9f4b1 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Sat, 21 Dec 2013 05:40:31 -0500
+Subject: [PATCH 11/13] v3a - small addition to dev notebook
+
+---
+ incr_change/dev_notebook.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/incr_change/dev_notebook.txt b/incr_change/dev_notebook.txt
+index 1d1ce8c..a2b9144 100644
+--- a/incr_change/dev_notebook.txt
++++ b/incr_change/dev_notebook.txt
+@@ -275,3 +275,5 @@ to put the function (ie at the end of the FileTransfer command, but I think ther
+ place available.
+ 
+ Performed a similar set of steps for sftpcontrolsocket
++
++Then fixed a couple of small issues that were preventing a successful compilation
+-- 
+1.8.4.rc3
+

@@ -1,0 +1,92 @@
+From 70b49a8b1137a72fd69c6910b2fbd4468baa5066 Mon Sep 17 00:00:00 2001
+From: Kevin McGinn <kmcginn14@gmail.com>
+Date: Thu, 19 Dec 2013 02:04:03 -0500
+Subject: [PATCH 05/13] v1 - small changes to test that incremental step is
+ working - which it does!
+
+---
+ incr_change/dev_notebook.txt | 35 +++++++++++++++++++++++++++++++++++
+ tinyftp/Makefile             |  5 ++---
+ tinyftp/connections.c        |  2 +-
+ 3 files changed, 38 insertions(+), 4 deletions(-)
+
+diff --git a/incr_change/dev_notebook.txt b/incr_change/dev_notebook.txt
+index 3452a53..fbe1cea 100644
+--- a/incr_change/dev_notebook.txt
++++ b/incr_change/dev_notebook.txt
+@@ -66,3 +66,38 @@ command IS recognized, but throwing error 425
+ not printing the message that would indicate reaching write_chksum
+ 
+ things to check for tomorrow: where is error 425 sent?
++
++12/18/2013
++
++Can add debugging flag to CFLAG variable in tinyftp makefile to make it play
++nice with gdb - running that is probably more informative than just putting
++print statements everywhere! Could be interesting with a server though.
++
++this didn't work too well, since halting a server does not lead to good things
++
++searched code for instances of response 425, looked through my commits to see
++where that is called in relation to my code
++
++reply 425 - can't open data connection is sent whenever the client_sock parameter
++does not match the sock parameter in the write_chksum function. I need to make
++sure that this conditional statement is correct
++
++on the plus side, the ZCHK command throws an error if no extra parameters (such as
++a file name) are given to it, so that one check is working. Next up for that is
++making sure that the file exists; however, that might be able to wait until the actual
++checksum calculation is implemented
++
++checking the conditional statement, it does appear to be fine - the write_chksum function
++only reaches the line for sending the 425 response if the client socket is less than 0
++(that is, not initialized properly) and the server socket does not equal the client socket.
++So the issue lies with the function that is calling write_chksum (which is interract)
++
++It seems to be following the same error checking pattern as commands like RETR or LIST,
++but the input to the command might be wrong because of how I'm calling it (using the 
++manual commands dialog box) - checking this with LIST (and a directory argument) yields
++the same result, so I think we can call this revision completed, actually, and wait to
++test it by calling it through the Filezilla GUI in the same way that LIST is called by
++the program and not by using the "manual commands" box
++
++Good place for the GUI toggle: under the "Force showing hidden files" toggle in the
++Server menu?
+diff --git a/tinyftp/Makefile b/tinyftp/Makefile
+index aadd404..0f26ef2 100644
+--- a/tinyftp/Makefile
++++ b/tinyftp/Makefile
+@@ -3,7 +3,7 @@ BINDIR= $(PREFIX)/bin
+ LIBS = 
+ PROGRAM = tinyftp
+ CC=gcc
+-CFLAGS= 
++CFLAGS=-g
+ COMPILE = $(CC) $(CFLAGS) -c
+ LINK = $(CC) $(CFLAGS)
+ 
+@@ -25,5 +25,4 @@ uninstall:
+ install:
+ 	cp -f $(PROGRAM) $(BINDIR)
+ clean:
+-	rm -rf *.o $(PROGRAM)
+-	
++	rm -rf *.o $(PROGRAM)
+\ No newline at end of file
+diff --git a/tinyftp/connections.c b/tinyftp/connections.c
+index 0dbc7cf..a728e2e 100644
+--- a/tinyftp/connections.c
++++ b/tinyftp/connections.c
+@@ -616,7 +616,7 @@ int interract(int conn_fd,cmd_opts *opts) {
+ 				                if(client_fd != -1) {
+ 					                write_chksum(conn_fd, client_fd, data_buff);
+ 					        }
+-				                //close the connection
++				                //"drop" the socket
+ 					        client_fd = -1;
+ 		                        }
+ 				}
+-- 
+1.8.4.rc3
+
