@@ -499,8 +499,22 @@ int CFileZillaEnginePrivate::Chmod(const CChmodCommand& command)
 
 int CFileZillaEnginePrivate::Checksum(const CChecksumCommand& command)
 {
+  //unable to call command if not connected to a server
+  if (!IsConnected())
+    return FZ_REPLY_NOTCONNECTED;
 
-  //IMPLEMENTATION DETAILS
+  //unable to call command if busy
+  if (IsBusy())
+    return FZ_REPLY_BUSY;
+
+  //unable to call command if proper fields are not filled
+  if (command.GetLocalFile().IsEmpty() || command.GetRemotePath().IsEmpty() ||
+      command.GetRemoteFile().IsEmpty())
+    return FZ_REPLY_SYNTAXERROR;
+
+  m_pCurrentCommand = command.Clone();
+  //TODO: add correct options for ControlSocket version of Checksum here?
+  return m_pControlSocket->Checksum(command);
 
 }
 

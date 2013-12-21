@@ -1542,6 +1542,8 @@ int CSftpControlSocket::ProcessReply(bool successful, const wxString& reply /*=_
 		return ChmodParseResponse(successful, reply);
 	case cmd_rename:
 		return RenameParseResponse(successful, reply);
+	case cmd_checksum:
+	        return ChecksumResponse(successful, reply);
 	default:
 		LogMessage(Debug_Warning, _T("No action for parsing replies to command %d"), (int)commandId);
 		return ResetOperation(FZ_REPLY_INTERNALERROR);
@@ -1604,6 +1606,8 @@ int CSftpControlSocket::SendNextCommand()
 		return ChmodSend();
 	case cmd_delete:
 		return DeleteSend();
+	case cmd_checksum:
+	        return ChecksumSend();
 	default:
 		LogMessage(::Debug_Warning, __TFILE__, __LINE__, _T("Unknown opID (%d) in SendNextCommand"), m_pCurOpData->opId);
 		ResetOperation(FZ_REPLY_INTERNALERROR);
@@ -2523,6 +2527,118 @@ int CSftpControlSocket::ChmodSend()
 	}
 
 	return FZ_REPLY_WOULDBLOCK;
+}
+
+class CSftpChecksumOpData : public COpData
+{
+public:
+	CSftpChecksumOpData(const CChecksumCommand& command)
+		: COpData(cmd_checksum), m_cmd(command)
+	{
+		m_useAbsolute = false;
+	}
+
+	virtual ~CSftpChecksumOpData() {}
+
+	CChecksumCommand m_cmd;
+	bool m_useAbsolute;
+};
+
+enum checksumStates
+{
+	checksum_init = 0,
+	checksum_checksum
+};
+
+int CSftpControlSocket::Checksum(const CChecksumCommand& command)
+{
+	if (m_pCurOpData)
+	{
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData not empty"));
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	LogMessage(Status, _("Compute checksum of '%s'"), command.GetRemotePath().FormatFilename(command.GetRemoteFile()).c_str());
+
+	CSftpChecksumOpData *pData = new CSftpChecksumOpData(command);
+	pData->opState = chmecksum_checksum;
+	m_pCurOpData = pData;
+
+	//change to the directory where the change is located
+	int res = ChangeDir(command.GetPath());
+	if (res != FZ_REPLY_OK)
+		return res;
+
+	return SendNextCommand();
+
+}
+
+int CSftpControlSocket::ChecksumParseResponse(bool successful, const wxString& reply)
+{
+	CSftpChecksumOpData *pData = static_cast<CSftpChecksumOpData*>(m_pCurOpData);
+
+	//check if op data does not exist
+	if (!pData)
+	{
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	if (!successful)
+	{
+		ResetOperation(FZ_REPLY_ERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	ResetOperation(FZ_REPLY_OK);
+	return FZ_REPLY_OK;
+  
+}
+
+int CSftpControlSocket::ChecksumSend(bool successful, const wxString& reply)
+{
+
+        LogMessage(Debug_Verbose, _T("CSftpControlSocket::ChecksumSend()"));
+
+	CSftpChecksumOpData *pData = static_cast<CSftpChecksumOpData*>(m_pCurOpData);
+
+	//check if op data does not exist
+	if (!pData)
+	{
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	bool res;
+	switch (pData->opState)
+	{
+	case checksum_checksum:
+		{
+			wxString quotedFilename = QuoteFilename(pData->m_cmd.GetRemotePath().FormatFilename(pData->m_cmd.GetRemoteFile(), !pData->m_useAbsolute));
+
+			res = Send(_T("zchk ") + WildcardEscape(quotedFilename),
+					   _T("zchk ") + quotedFilename);
+		}
+		break;
+	default:
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("unknown op state: %d"), pData->opState);
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+
+	//message does not send properly
+	if (!res)
+	{
+		ResetOperation(FZ_REPLY_ERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	return FZ_REPLY_WOULDBLOCK;
+
 }
 
 class CSftpRenameOpData : public COpData

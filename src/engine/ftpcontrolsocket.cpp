@@ -492,6 +492,9 @@ void CFtpControlSocket::ParseResponse()
 	case cmd_rawtransfer:
 		TransferParseResponse();
 		break;
+	case cmd_checksum:
+	        ChecksumParseResponse();
+	        break;
 	case cmd_none:
 		LogMessage(Debug_Verbose, _T("Out-of-order reply, ignoring."));
 		break;
@@ -1897,6 +1900,8 @@ int CFtpControlSocket::SendNextCommand()
 		return DeleteSend();
 	case cmd_removedir:
 		return RemoveDirSend();
+	case cmd_checksum:
+	        return ChecksumSend();
 	default:
 		LogMessage(__TFILE__, __LINE__, this, ::Debug_Warning, _T("Unknown opID (%d) in SendNextCommand"), m_pCurOpData->opId);
 		ResetOperation(FZ_REPLY_INTERNALERROR);
@@ -3790,6 +3795,121 @@ int CFtpControlSocket::ChmodSend()
 		return FZ_REPLY_ERROR;
 	}
 
+	if (!res)
+	{
+		ResetOperation(FZ_REPLY_ERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	return FZ_REPLY_WOULDBLOCK;
+}
+
+class CFtpChecksumOpData : public COpData
+{
+public:
+	CFtpChecksumOpData(const CChecksumCommand& command)
+		: COpData(cmd_checksum), m_cmd(command)
+	{
+		m_useAbsolute = false;
+	}
+
+	virtual ~CFtpChecksumOpData() {}
+
+	CChecksumCommand m_cmd;
+	bool m_useAbsolute;
+};
+
+enum checksumStates
+{
+	checksum_init = 0,
+	checksum_checksum
+};
+
+
+int CFtpControlSocket::Checksum(const CChecksumCommand& command)
+{
+
+        //check to see if there is already data for this operation
+        if (m_pCurOpData)
+	{
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData not empty"));
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+	
+	//write log message about command
+	LogMessage(Status, _("Requesting checksum of '%s'"), command.GetRemotePath().FormatFilename(command.GetRemoteFile()).c_str());
+
+	//set the op data for this command
+	CFtpChecksumOpData *pData = new CFtpChecksumOpData(command);
+	pData->opState = checksum_checksum;
+	m_pCurOpData = pData;
+
+	//change remote directory to the path of the target file
+	int res = ChangeDir(command.GetRemotePath());
+	if (res != FZ_REPLY_OK)
+		return res;
+
+        return SendNextCommand();
+}
+
+int CFtpControlSocket::ChecksumParseResponse()
+{
+
+        //ensure op data exists
+        CFtpChecksumOpData *pData = static_cast<CFtpChecksumOpData*>(m_pCurOpData);
+	if (!pData)
+	{
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	int code = GetReplyCode();
+	if (code != 2 && code != 3)
+	{
+		ResetOperation(FZ_REPLY_ERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	
+	//TODO: compare checksum here?
+
+	ResetOperation(FZ_REPLY_OK);
+	return FZ_REPLY_OK;
+
+
+}
+
+
+int CFtpControlSocket::ChecksumSend()
+{
+
+        LogMessage(Debug_Verbose, _T("CFtpControlSocket::ChecksumSend()"));
+
+	//check existence of op data
+	CFtpChecksumOpData *pData = static_cast<CFtpChecksumOpData*>(m_pCurOpData);
+	if (!pData)
+	{
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("m_pCurOpData empty"));
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	bool res;
+	switch (pData->opState)
+	{
+	case checksum_checksum:
+	        //send request
+		res = Send(_T("ZCHK ") + pData->m_cmd.GetRemotePath().FormatFilename(pData->m_cmd.GetRemoteFile(), !pData->m_useAbsolute));
+		break;
+	default:
+		LogMessage(__TFILE__, __LINE__, this, Debug_Warning, _T("unknown op state: %d"), pData->opState);
+		ResetOperation(FZ_REPLY_INTERNALERROR);
+		return FZ_REPLY_ERROR;
+	}
+
+	//request did not send properly
 	if (!res)
 	{
 		ResetOperation(FZ_REPLY_ERROR);

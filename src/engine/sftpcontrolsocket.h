@@ -55,6 +55,7 @@ public:
 	virtual int Mkdir(const CServerPath& path);
 	virtual int Rename(const CRenameCommand& command);
 	virtual int Chmod(const CChmodCommand& command);
+	virtual int Checksum(const CChecksumCommand& command);
 	virtual void Cancel();
 
 	virtual bool Connected() { return m_pInputThread != 0; }
@@ -108,6 +109,9 @@ protected:
 	int ChmodParseResponse(bool successful, const wxString& reply);
 	int ChmodSubcommandResult(int prevResult);
 	int ChmodSend();
+
+	int ChecksumParseResponse(bool successful, const wxString& reply);
+	int ChecksumSend();
 
 	int RenameParseResponse(bool successful, const wxString& reply);
 	int RenameSubcommandResult(int prevResult);

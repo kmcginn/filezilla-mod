@@ -238,7 +238,10 @@ include/engineprivate.h has a bunch of command handlers inside it, so I defined 
 checksum command - these are called by CFileZillaEngine::Command, so that might also be a
 good thing to look at
 
-implement it in engine/engineprivate.cpp
+implemented it in engine/engineprivate.cpp - return different error responses based on the
+lack of connection, busy-ness, or not all data fields filled out
+
+then, based on pattern of other commands, calls instance that is related to the ControlSocket
 
 looks like there are virtual instances of these handlers in a bunch of places:
 engine/ftpcontrolsocket.h
@@ -246,3 +249,29 @@ engine/ControlSocket.h
 engine/sftpcontrolsocket.h
 
 Also handlers for sending, parsing the response, and parsing the subcommand result.
+
+So time to implement all of those!
+
+Started with ControlSocket - this seems to be the base class for ftpcontrolsocket and
+sftpcontrolsocket, so it is where the virtual function for the command is first defined,
+and where the "fallback" is implemented that just basically says the command is not
+supported because it is not implemented in the ftp or sftp specific control sockets
+
+Stumbled upon a switch statement in ftpcontrolsocket's implementation that chooses
+the response function to call based on the id of the command. Added an entry in
+there for the checksum command!
+
+Same with SendNextCommand
+
+Looking at how each command is implemented, they all seem to need a special little
+data class to hold their important pieces of information. The implementations are also
+decently complex - although they mostly seem to be things that check the input to the
+command for accuracy, so maybe I don't need to implement too much in there yet
+
+Implemented the ChecksumSend, ChecksumParseResults, and Checksum functions for ftpcontrolsocket
+(I am assuming that we do not need the ChecksumSubcommandResult function, since that seems
+to be called whenever the function was called by another function - this might be a decent place
+to put the function (ie at the end of the FileTransfer command, but I think there should be another
+place available.
+
+Performed a similar set of steps for sftpcontrolsocket

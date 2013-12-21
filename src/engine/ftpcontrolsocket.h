@@ -76,6 +76,11 @@ protected:
 	virtual int ChmodSubcommandResult(int prevResult);
 	virtual int ChmodSend();
 
+	virtual int Checksum(const CChecksumCommand& command);
+	virtual int ChecksumParseResponse();
+	//virtual int ChecksumSubcommandResult(int prevResult); //not necessary?
+	virtual int ChecksumSend();
+
 	virtual int Transfer(const wxString& cmd, CFtpTransferOpData* oldData);
 	virtual int TransferParseResponse();
 	virtual int TransferSend();

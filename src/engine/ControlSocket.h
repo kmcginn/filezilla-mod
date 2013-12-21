@@ -131,6 +131,7 @@ public:
 	virtual int Mkdir(const CServerPath& path);
 	virtual int Rename(const CRenameCommand& command);
 	virtual int Chmod(const CChmodCommand& command);
+	virtual int Checksum(const CChecksumCommand& command);
 	virtual bool Connected() = 0;
 
 	// If m_pCurrentOpData is zero, this function returns the current command
