@@ -64,6 +64,7 @@ protected:
 	int Mkdir(const CMkdirCommand& command);
 	int Rename(const CRenameCommand& command);
 	int Chmod(const CChmodCommand& command);
+	int Checksum(const CChecksumCommand& command);
 
 	int ContinueConnect();
 

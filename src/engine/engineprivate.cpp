@@ -497,6 +497,13 @@ int CFileZillaEnginePrivate::Chmod(const CChmodCommand& command)
 	return m_pControlSocket->Chmod(command);
 }
 
+int CFileZillaEnginePrivate::Checksum(const CChecksumCommand& command)
+{
+
+  //IMPLEMENTATION DETAILS
+
+}
+
 void CFileZillaEnginePrivate::SendDirectoryListingNotification(const CServerPath& path, bool onList, bool modified, bool failed)
 {
 	wxASSERT(m_pControlSocket);
