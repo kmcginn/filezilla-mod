@@ -1489,7 +1489,7 @@ int CControlSocket::Chmod(const CChmodCommand&)
 
 //base implementation of virtual function - if it reaches here,
 //the command is not implemented in the ftp or sftp versions
-int CControlSOcket::Checksum(const CChecksumCommand&)
+int CControlSocket::Checksum(const CChecksumCommand&)
 {
   return FZ_REPLY_NOTSUPPORTED;
 }

@@ -1543,7 +1543,7 @@ int CSftpControlSocket::ProcessReply(bool successful, const wxString& reply /*=_
 	case cmd_rename:
 		return RenameParseResponse(successful, reply);
 	case cmd_checksum:
-	        return ChecksumResponse(successful, reply);
+	        return ChecksumParseResponse(successful, reply);
 	default:
 		LogMessage(Debug_Warning, _T("No action for parsing replies to command %d"), (int)commandId);
 		return ResetOperation(FZ_REPLY_INTERNALERROR);
@@ -2562,11 +2562,11 @@ int CSftpControlSocket::Checksum(const CChecksumCommand& command)
 	LogMessage(Status, _("Compute checksum of '%s'"), command.GetRemotePath().FormatFilename(command.GetRemoteFile()).c_str());
 
 	CSftpChecksumOpData *pData = new CSftpChecksumOpData(command);
-	pData->opState = chmecksum_checksum;
+	pData->opState = checksum_checksum;
 	m_pCurOpData = pData;
 
 	//change to the directory where the change is located
-	int res = ChangeDir(command.GetPath());
+	int res = ChangeDir(command.GetRemotePath());
 	if (res != FZ_REPLY_OK)
 		return res;
 
@@ -2597,7 +2597,7 @@ int CSftpControlSocket::ChecksumParseResponse(bool successful, const wxString& r
   
 }
 
-int CSftpControlSocket::ChecksumSend(bool successful, const wxString& reply)
+int CSftpControlSocket::ChecksumSend()
 {
 
         LogMessage(Debug_Verbose, _T("CSftpControlSocket::ChecksumSend()"));
