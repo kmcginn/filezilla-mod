@@ -275,3 +275,5 @@ to put the function (ie at the end of the FileTransfer command, but I think ther
 place available.
 
 Performed a similar set of steps for sftpcontrolsocket
+
+Then fixed a couple of small issues that were preventing a successful compilation
