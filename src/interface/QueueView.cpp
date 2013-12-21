@@ -1477,8 +1477,19 @@ void CQueueView::SendNextCommand(t_EngineData& engineData)
 			int res = engineData.pEngine->Command(CFileTransferCommand(fileItem->GetLocalPath().GetPath() + fileItem->GetLocalFile(), fileItem->GetRemotePath(),
 												fileItem->GetRemoteFile(), fileItem->Download(), fileItem->m_transferSettings));
 			wxASSERT((res & FZ_REPLY_BUSY) != FZ_REPLY_BUSY);
-			if (res == FZ_REPLY_WOULDBLOCK)
+
+			printf("res: %d\n", res);
+			if (res == FZ_REPLY_WOULDBLOCK) {
+			        //after a "successful" transfer, set the checksum command
+				//to be the next state of the engine, IF the option was enabled
+				printf("potentially changing state to checksum\n");
+				if(COptions::Get()->GetOptionVal(OPTION_USE_CHECKSUM)) {
+				  printf("changing state to checksum!\n");
+				  engineData.state = t_EngineData::checksum;
+				  continue;
+				}
 				return;
+			}
 
 			if (res == FZ_REPLY_NOTCONNECTED)
 			{
@@ -1495,14 +1506,71 @@ void CQueueView::SendNextCommand(t_EngineData& engineData)
 			if (res == FZ_REPLY_OK)
 			{
 				ResetEngine(engineData, success);
-				return;
-			}
 
+				//after a "successful" transfer, set the checksum command
+				//to be the next state of the engine, IF the option was enabled
+				printf("potentially changing state to checksum\n");
+				if(COptions::Get()->GetOptionVal(OPTION_USE_CHECKSUM)) {
+				  printf("changing state to checksum!\n");
+				  engineData.state = t_EngineData::checksum;
+				  continue;
+				}
+			}
 			if (!IncreaseErrorCount(engineData))
-				return;
+			  return;
 			continue;
 		}
 
+		if (engineData.state == t_EngineData::checksum)
+		{
+		  
+                        CFileItem* fileItem = engineData.pItem;
+
+			fileItem->m_statusMessage = _("Verifying Checksum");
+			RefreshItem(engineData.pItem);
+
+			//int res = engineData.pEngine->Command(CChecksumCommand(fileItem->GetLocalPath().GetPath() + fileItem->GetLocalFile(), fileItem->GetRemotePath(), fileItem->GetRemoteFile()));
+			
+			//splitting the above into multiple lines for debugging purposes
+			int res;
+			wxString localfile = fileItem->GetLocalPath().GetPath() + fileItem->GetLocalFile();
+			CServerPath remotepath = fileItem->GetRemotePath();
+			wxString remotefile = fileItem->GetRemoteFile();
+
+			CChecksumCommand cmd = CChecksumCommand(localfile, remotepath, remotefile);
+
+			res = engineData.pEngine->Command(cmd);
+
+			//perform similar checks on the result
+			wxASSERT((res & FZ_REPLY_BUSY) != FZ_REPLY_BUSY);
+			
+			//executing command would block the thread, so it wait to execute it
+			if (res == FZ_REPLY_WOULDBLOCK)
+			  return;
+			
+			//no longer connected to the server, so tries to reconnect
+			if( res == FZ_REPLY_NOTCONNECTED)
+			  {
+			    if (engineData.transient)
+			      {
+				ResetEngine(engineData, retry);
+				return;
+			      }
+			    
+			    engineData.state = t_EngineData::connect;
+			    continue;
+			  }
+			if( res == FZ_REPLY_OK)
+			  {
+			    ResetEngine(engineData, success);
+			    return;
+			  }
+			
+			if(!IncreaseErrorCount(engineData))
+			  return;
+			
+		}
+		
 		if (engineData.state == t_EngineData::mkdir)
 		{
 			CFileItem* fileItem = engineData.pItem;

@@ -2,8 +2,7 @@ v1 - add a command on the server to return checksum of a file
 v2 - add UI element on client for toggling checksum feature
 v3 - UI toggle causes client to issue checksum command to server
    v3a - implement command on FileZilla
-   v3b - called on download
-   v3c - called on upload
+   v3b - called on file transfer
 v4 - client compares checksum returned by server to local checksum (always true)
    v4a - download
    v4b - upload

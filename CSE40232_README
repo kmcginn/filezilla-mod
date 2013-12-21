@@ -1,0 +1,36 @@
+Compiling Tinyftp:
+
+cd trunk/tinyftp
+make
+
+Running Tinyftp:
+cd trunk/tinyftp
+./tinyftp -s 127.0.0.1 -p 9909 -c .
+
+Compiling FileZilla:
+
+cd trunk/
+
+(IF COMPILE EXISTS)
+cd compile
+make distclean
+
+(ELSE)
+mkdir compile
+cd compile
+
+../configure
+make
+make install (NOTE: requires root)
+
+Running FileZilla:
+(IF ABLE TO make install)
+filezilla
+
+(ELSE)
+cd compile/src/interface
+./filezilla
+
+(NOTE: in this case, be sure that the menus.xrc file in 
+/usr/local/shared/filezilla/resources matches the one in 
+trunk/src/interface/resources)

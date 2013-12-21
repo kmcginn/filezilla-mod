@@ -93,7 +93,8 @@ struct t_EngineData
 		list,
 		mkdir,
 		askpassword,
-		waitprimary
+		waitprimary,
+		checksum
 	} state;
 
 	CFileItem* pItem;

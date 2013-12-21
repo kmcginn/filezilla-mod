@@ -277,3 +277,71 @@ place available.
 Performed a similar set of steps for sftpcontrolsocket
 
 Then fixed a couple of small issues that were preventing a successful compilation
+
+Should see how PWD displays the path in the command area - we can just display a dummy result
+from the checksum command for now
+
+sends it in a response 257?
+
+Not having too much luck seeing how it prints the response... looking at what tinyftp sends
+now
+
+tinyftp uses sprintf to add current directory to a previously-defined string
+len = sprintf(reply,REPL_257_PWD,current_dir);
+then just sends the reply
+
+So I defined a response string for the checksum (257_REPL_ZCHK), and I modified the
+write_checksum function to create a string that uses the filename and a (fake) checksum
+so that the server will send SOMETHING back
+
+I believe that finishes v3a!
+
+12/21/2013
+
+STARTING v3b
+
+Need to find where the file transfer command is issued, and then add code to issue the
+checksum command right after it
+
+Looking in the GUI code (src/interface)
+
+No success with just grep, so ran filezilla in gdb, set breakpoint on the FileTransfer
+function from ftpcontrolsocket, initiated a file transfer with drag and drop. that caused
+the program to hit the breakpoint, so then I ran a backtrace to see what functions were called
+
+Found a promising spot in QueueView.cpp (line 1495) where it goes if the transfer command is
+successful, so I added an if statement in there to also send the checksum command if the checksum
+option is enabled - this actually works for both uploads and downloads, so v3b and v3c can be
+combined to one
+
+Needed to add checksum as a possible state for the engine
+
+After a little debugging, it seems like the reply to a file transfer is always that it will
+block... I tried adding the state-changing-to-checksum when you get that response, too
+
+Very good thing: the OPTION_USE_CHECKSUM toggles appropriately with the button, and we can
+access that result anywhere in the code!
+
+It gets to the point where it changes the state! Now to check if it actually calls the command
+
+gdb confirms that it does call the command, but the result that is returned is 258, which
+does not match a known FZ_CONSTANT.
+
+Needed to add case for the checksum command in FileZillaEngine.cpp's Command function, at
+least. But that wasn't all.
+
+having trouble finding program location just with gdb, possibly because of the threading?
+so I resorted to using print statements
+
+After messing around with gdb some more, the program DOES go to FileZillaEngine.cpp's Command
+function, and the command that it passes in SHOULD be correct, since I was able to use the
+debugger to print the ID of the command and it matched cmd_checksum. However, something
+weird is happening in line 32 of that function, and it somehow causing it to return the strange
+value of 258. I have been unable to fix this problem.
+
+Also, running into a few issues with the checkmark starting off in potentially wrong? The value
+of the option remains constant between opening/closing it, but the checkmark is flipped if you
+close it with the option checked. The issue was small and silly: I was using the value of
+OPTION_SHOW_HIDDEN_FILES to determine the checkmark for the option, not OPTION_USE_CHECKSUM
+
+I manually tested that a few times, and it is good to go now.

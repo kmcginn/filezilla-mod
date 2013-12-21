@@ -581,9 +581,19 @@ bool write_chksum(int sock, int client_sock, const char * filename) {
 		return FALSE;
 	}
 
-	//check if directory exists?
-	//check if file exists?
-	printf("Calling ZCHK\n");
+	//before actually trying to compute the checksum, should ensure that:
+	//the directory exists
+	//the file exists
+
+	//creating line to send as a response
+	char line[300];
+
+	line[0] = '\0';
+	int len;
+	//create reply with filename and checksum
+	len = sprintf(line, REPL_257_ZCHK, filename, 'FAKE_CHECKSUM');
+	line[len] = '\0';
+	send_repl(sock, line);
 
 	//close the connection
         if(sock!=client_sock) {
@@ -591,7 +601,7 @@ bool write_chksum(int sock, int client_sock, const char * filename) {
 		send_repl(sock,REPL_226);
 	}
 
-	//closedir?
+	//close the directory?
 
 	return TRUE;
 }

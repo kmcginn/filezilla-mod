@@ -35,6 +35,8 @@ int CFileZillaEngine::Command(const CCommand &command)
 	m_bIsInCommand = true;
 
 	int res = FZ_REPLY_INTERNALERROR;
+
+	printf("command id: %d\n", command.GetId());
 	switch (command.GetId())
 	{
 	case cmd_connect:
@@ -70,6 +72,10 @@ int CFileZillaEngine::Command(const CCommand &command)
 	case cmd_chmod:
 		res = Chmod(reinterpret_cast<const CChmodCommand&>(command));
 		break;
+        case cmd_checksum:
+	        printf("recognized the checksum command\n");
+	        res = Checksum(reinterpret_cast<const CChecksumCommand&>(command));
+	        break;
 	default:
 		return FZ_REPLY_SYNTAXERROR;
 	}
